@@ -20,5 +20,7 @@ export default class EnvironmentRun {
     this.description = opts.description
 
     this.status = STATUS_OK
+
+    this.startTime = Date.now()
   }
 }

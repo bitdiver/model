@@ -33,7 +33,7 @@ export default class StepBase {
     // A step can store information in the testcase environment. So a step could provide data
     // to other steps in the same testcase. For a single step or a server only step this is an
     // array of testcase environments
-    this.testcaseEnvironment = undefined
+    this.environmentTestcase = undefined
 
     // The name of this step
     this.name = opts.name
