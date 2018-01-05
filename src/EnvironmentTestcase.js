@@ -21,9 +21,33 @@ export default class EnvironmentTestcase {
     // a description for this test case
     this.description = opts.description
 
-    this.status = STATUS_OK
+    this._status = STATUS_OK
+
+    // if the running is false, the status could not be changed any more
+    this.running = true
 
     // The map is used to store the data
     this.map = new Map()
+  }
+
+  /**
+   * The status could only be changed while the testcase is running. After finishing the
+   * testcase the status could not be changed any more
+   * @param newStatus {number} The new status for the testcase
+   */
+  set status(newStatus) {
+    if (this.running && newStatus > this._status) {
+      this._status = newStatus
+    }
+  }
+  get status() {
+    return this._status
+  }
+
+  /**
+   * Finishes this testcase
+   */
+  finished() {
+    this.running = false
   }
 }

@@ -35,6 +35,8 @@ export default class StepBase {
     // array of testcase environments
     this.environmentTestcase = undefined
 
+    this.environmentRun = undefined
+
     // The name of this step
     this.name = opts.name
 
@@ -43,7 +45,7 @@ export default class StepBase {
     this.testMode = false
 
     // each step starts with this status
-    this.status = STATUS_OK
+    this._status = STATUS_OK
 
     // Normaly a step will only be executed if there is data defined for the testcase.
     // but some steps do not need any data. Then this must be set to false.
@@ -57,91 +59,131 @@ export default class StepBase {
   /**
    * Logs a debug message.
    * @param options {string/object} The message to log or the properties
+   * @return promise {promise} Indicating that the message was written
    */
   logDebug(options) {
-    const logLevel = LEVEL_DEBUG
-    if (typeof options === 'string') {
-      this._log({ message: options, logLevel })
-    } else {
-      this._log({ ...options, logLevel })
-    }
+    return this._log(options, LEVEL_DEBUG)
   }
 
   /**
    * Logs a info message.
    * @param options {string/object} The message to log or the properties
+   * @return promise {promise} Indicating that the message was written
    */
   logInfo(options) {
-    const logLevel = LEVEL_INFO
-    if (typeof options === 'string') {
-      this._log({ message: options, logLevel })
-    } else {
-      this._log({ ...options, logLevel })
-    }
+    return this._log(options, LEVEL_INFO)
   }
 
   /**
    * Logs a warning message.
    * @param options {string/object} The message to log or the properties
+   * @return promise {promise} Indicating that the message was written
    */
   logWarning(options) {
-    const logLevel = LEVEL_WARNING
-    this._setStatus(STATUS_WARNING)
-    if (typeof options === 'string') {
-      this._log({ message: options, logLevel })
-    } else {
-      this._log({ ...options, logLevel })
-    }
+    this.status(STATUS_WARNING)
+    this._setTestcaseStatus(STATUS_WARNING)
+    return this._log(options, LEVEL_WARNING)
   }
 
   /**
    * Logs a error message.
    * Error normaly means that the testcase gots an error
    * @param options {string/object} The message to log or the properties
+   * @return promise {promise} Indicating that the message was written
    */
   logError(options) {
-    const logLevel = LEVEL_ERROR
-    this._setStatus(STATUS_ERROR)
-    if (typeof options === 'string') {
-      this._log({ message: options, logLevel })
-    } else {
-      this._log({ ...options, logLevel })
-    }
+    this.status(STATUS_ERROR)
+    this._setTestcaseStatus(STATUS_ERROR)
+    return this._log(options, LEVEL_ERROR)
   }
 
   /**
    * Logs a fatal message.
    * Fatal normaly means that the complete test run needs to be stopped
    * @param options {string/object} The message to log or the properties
+   * @return promise {promise} Indicating that the message was written
    */
   logFatal(options) {
-    const logLevel = LEVEL_FATAL
-    this._setStatus(STATUS_FATAL)
-    if (typeof options === 'string') {
-      this._log({ message: options, logLevel })
-    } else {
-      this._log({ ...options, logLevel })
-    }
+    this.status(STATUS_FATAL)
+    this._setTestcaseStatus(STATUS_FATAL)
+    return this._log(options, LEVEL_FATAL)
   }
 
-  _log(options) {
-    this.logger.log({
-      ...options,
-      name: this.name,
-      instance: this.stepInstanceId,
-      time: new Date(Date.now()),
-    })
+  _setTestcaseStatus(status) {
+    if (this.type === STEP_TYPE_NORMAL) {
+      this.environmentTestcase.status(status)
+    } else {
+      for (const tcEnv of this.environmentTestcase) {
+        tcEnv.status(status)
+      }
+    }
   }
 
   /**
-   * Sets the status of this step to 'ERROR'. This normaly means that the testcase
-   * this step belongs to got an error and will not be continued.
-   * @param message {string/object} The message to log or the properties to log
+   * Calls the logger with the given messageObj
+   * @param messageObj {object|string} Either a message or a json object to be logged
+   * @param logLevel {string} The loglevel to be used
+   * @return promise {promise} Indicating that the message was written
    */
-  _setStatus(status) {
-    if (this.status < status) {
-      this.status = status
+  _log(messageObj, logLevel = LEVEL_INFO) {
+    const data =
+      typeof messageObj === 'string' ? { message: messageObj } : messageObj
+    const meta = {
+      run: {
+        start: this.environmentRun.startTime,
+        id: this.environmentRun.id,
+      },
+      step: {
+        id: this.stepInstanceId,
+        name: this.name,
+        type: this.type,
+        status: this.status,
+      },
+      time: Date.now(),
     }
+
+    if (this.type === STEP_TYPE_NORMAL) {
+      meta.tc = {
+        id: this.environmentTestcase.id,
+        name: this.environmentTestcase.name,
+      }
+      return this.logger.log({
+        data,
+        meta,
+        logLevel,
+      })
+    }
+
+    // Single steps
+    const promises = []
+    for (const [tcEnvId, tcEnv] of this.environmentTestcase) {
+      meta.tc = {
+        id: tcEnvId,
+        name: tcEnv.name,
+      }
+      promises.push(
+        this.logger.log({
+          data,
+          meta,
+          logLevel,
+        })
+      )
+    }
+    return Promise.all(promises)
+  }
+
+  /**
+   * The status could only be changed while the testcase is running. After finishing the
+   * testcase the status could not be changed any more
+   * @param newStatus {number} The new status for the testcase
+   */
+  set status(newStatus) {
+    if (this.environmentTestcase.running && newStatus > this._status) {
+      this._status = newStatus
+    }
+  }
+  get status() {
+    return this._status
   }
 
   /**
