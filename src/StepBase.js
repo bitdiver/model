@@ -80,7 +80,7 @@ export default class StepBase {
    * @return promise {promise} Indicating that the message was written
    */
   logWarning(options) {
-    this.status(STATUS_WARNING)
+    this.status = STATUS_WARNING
     this._setTestcaseStatus(STATUS_WARNING)
     return this._log(options, LEVEL_WARNING)
   }
@@ -92,7 +92,7 @@ export default class StepBase {
    * @return promise {promise} Indicating that the message was written
    */
   logError(options) {
-    this.status(STATUS_ERROR)
+    this.status = STATUS_ERROR
     this._setTestcaseStatus(STATUS_ERROR)
     return this._log(options, LEVEL_ERROR)
   }
@@ -104,17 +104,21 @@ export default class StepBase {
    * @return promise {promise} Indicating that the message was written
    */
   logFatal(options) {
-    this.status(STATUS_FATAL)
+    this.status = STATUS_FATAL
+
+    // On a fatal error we would like to stop the whole test
+    this.environmentRun.status = STATUS_FATAL
+
     this._setTestcaseStatus(STATUS_FATAL)
     return this._log(options, LEVEL_FATAL)
   }
 
   _setTestcaseStatus(status) {
     if (this.type === STEP_TYPE_NORMAL) {
-      this.environmentTestcase.status(status)
+      this.environmentTestcase.status = status
     } else {
       for (const tcEnv of this.environmentTestcase) {
-        tcEnv.status(status)
+        tcEnv.status = status
       }
     }
   }
@@ -156,9 +160,9 @@ export default class StepBase {
 
     // Single steps
     const promises = []
-    for (const [tcEnvId, tcEnv] of this.environmentTestcase) {
+    for (const tcEnv of this.environmentTestcase) {
       meta.tc = {
-        id: tcEnvId,
+        id: tcEnv.id,
         name: tcEnv.name,
       }
       promises.push(
@@ -173,12 +177,11 @@ export default class StepBase {
   }
 
   /**
-   * The status could only be changed while the testcase is running. After finishing the
-   * testcase the status could not be changed any more
+   * Set the status of the step
    * @param newStatus {number} The new status for the testcase
    */
   set status(newStatus) {
-    if (this.environmentTestcase.running && newStatus > this._status) {
+    if (newStatus > this._status) {
       this._status = newStatus
     }
   }

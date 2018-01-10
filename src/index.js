@@ -10,7 +10,13 @@ import {
 } from './StepBase'
 import StepRegistry from './StepRegistry'
 
-import { STATUS_OK, STATUS_WARNING, STATUS_ERROR, STATUS_FATAL } from './status'
+import {
+  STATUS_OK,
+  STATUS_UNKNOWN,
+  STATUS_WARNING,
+  STATUS_ERROR,
+  STATUS_FATAL,
+} from './status'
 
 export {
   EnvironmentRun,
@@ -20,6 +26,7 @@ export {
   StepBase,
   StepRegistry,
   STATUS_OK,
+  STATUS_UNKNOWN,
   STATUS_WARNING,
   STATUS_ERROR,
   STATUS_FATAL,
