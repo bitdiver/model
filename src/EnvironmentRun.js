@@ -22,9 +22,10 @@ export default class EnvironmentRun {
     // The description of the suite
     this.description = opts.description
 
-    this.status = STATUS_OK
-
     this.startTime = Date.now()
+
+    // The map is used to store the data
+    this.map = new Map()
   }
 
   /**

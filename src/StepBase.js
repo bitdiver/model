@@ -23,7 +23,7 @@ export const STEP_TYPE_SERVER_ONLY = 'serverSingle'
  */
 export default class StepBase {
   constructor(opts = {}) {
-    this.logger = getLogAdapter()
+    this.logger = opts.logAdapter ? opts.logAdapter : getLogAdapter()
 
     this.type = opts.type ? opts.type : STEP_TYPE_NORMAL
 
