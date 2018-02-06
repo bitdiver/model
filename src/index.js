@@ -10,7 +10,6 @@ import {
   LEVEL_FATAL,
 } from './LogAdapter'
 import { LogAdapterMemory, getLogAdapterMemory } from './LogAdapterMemory'
-import getServerAdapter from './ServerAdapter'
 import StepBase from './StepBase'
 import {
   STEP_TYPE_NORMAL,
@@ -34,7 +33,6 @@ export {
   LogAdapterMemory,
   getLogAdapter,
   getLogAdapterMemory,
-  getServerAdapter,
   StepBase,
   StepRegistry,
   STATUS_OK,

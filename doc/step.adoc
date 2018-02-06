@@ -75,7 +75,7 @@ List of all the log messages::
 
 === Methods called by the runner
 These methods could be implemented by the step implementer.
-They will be called by the runner while step executeion
+They will be called by the runner while step execution
 
 Each of the methods must return a promise.
 
