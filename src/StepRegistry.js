@@ -45,6 +45,6 @@ export default class StepRegistry {
     }
     const stepClass = this.stepMap.get(stepName)
 
-    return new stepClass()
+    return new stepClass({ name: stepName })
   }
 }
