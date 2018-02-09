@@ -45,43 +45,51 @@ export class LogAdapterMemory extends LogAdapter {
     }
   }
 
-  prepareTestcase(runId, testcaseName) {
+  prepareTestcase(runId, testcaseName, meta) {
     if (this.logs[runId].testcases[testcaseName] === undefined) {
       this.logs[runId].testcases[testcaseName] = {
         logs: [],
         steps: {},
+        countCurrent: meta.tc.countCurrent,
+        countAll: meta.tc.countAll,
       }
     }
   }
 
-  async _logRun(meta, data) {
+  async _logRun(meta, data, logLevel) {
     const runId = meta.run.id
     this.prepareRun(runId)
-    this.logs[runId].logs.push(data)
+    this.logs[runId].logs.push({ data, logLevel })
   }
 
-  async _logTestcase(meta, data) {
+  async _logTestcase(meta, data, logLevel) {
     const runId = meta.run.id
     const testcaseName = meta.tc.name
 
     this.prepareRun(runId)
-    this.prepareTestcase(runId, testcaseName)
+    this.prepareTestcase(runId, testcaseName, meta)
 
-    this.logs[runId].testcases[testcaseName].logs.push(data)
+    this.logs[runId].testcases[testcaseName].logs.push({
+      data,
+      logLevel,
+      countCurrent: meta.tc.countCurrent,
+      countAll: meta.tc.countAll,
+    })
   }
 
-  async _logStep(meta, data) {
+  async _logStep(meta, data, logLevel) {
     const runId = meta.run.id
     const testcaseName = meta.tc.name
     const stepName = meta.step.name
 
     this.prepareRun(runId)
-    this.prepareTestcase(runId, testcaseName)
-
+    this.prepareTestcase(runId, testcaseName, meta)
     if (this.logs[runId].testcases[testcaseName] === undefined) {
       this.logs[runId].testcases[testcaseName] = {
         logs: [],
         steps: {},
+        countCurrent: meta.tc.countCurrent,
+        countAll: meta.tc.countAll,
       }
     }
     if (
@@ -91,7 +99,12 @@ export class LogAdapterMemory extends LogAdapter {
         logs: [],
       }
     }
-    this.logs[runId].testcases[testcaseName].steps[stepName].logs.push(data)
+    this.logs[runId].testcases[testcaseName].steps[stepName].logs.push({
+      data,
+      logLevel,
+      countCurrent: meta.step.countCurrent,
+      countAll: meta.step.countAll,
+    })
   }
 
   async writeFile(fileName) {

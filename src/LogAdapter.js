@@ -4,7 +4,7 @@ import assert from 'assert'
 
 export const LEVEL_DEBUG = 'debug'
 export const LEVEL_INFO = 'info'
-export const LEVEL_WARNING = 'warn'
+export const LEVEL_WARNING = 'warning'
 export const LEVEL_ERROR = 'error'
 export const LEVEL_FATAL = 'fatal'
 
@@ -33,10 +33,14 @@ export class LogAdapter {
    *           id: 'id'
    *         },
    *         tc:{
+   *           tcCountCurrent: tcCountCurrent,
+   *           tcCountAll: tcCountAll,
    *           id: 'id',
    *           name: 'great tc name'
    *         },
    *         step:{
+   *           stepCountCurrent: stepCountCurrent,
+   *           stepCountAll: stepCountAll,
    *           id: 'id',
    *           name: 'great step name'
    *           typ: ('singel'| ''|)
@@ -53,6 +57,7 @@ export class LogAdapter {
 
     const meta = logMessage.meta
     const data = logMessage.data
+    const logLevel = logMessage.logLevel
 
     // Set the time of the log
     meta.logTime = Date.now()
@@ -62,31 +67,34 @@ export class LogAdapter {
 
     if (meta.step !== undefined && meta.step.id !== undefined) {
       // this is a step log
-      return this._logStep(meta, data)
+      return this._logStep(meta, data, logLevel)
     } else if (meta.tc !== undefined && meta.tc.id !== undefined) {
       // This is a testcase log
-      return this._logTestcase(meta, data)
+      return this._logTestcase(meta, data, logLevel)
     }
     // This is a run log
-    return this._logRun(meta, data)
+    return this._logRun(meta, data, logLevel)
   }
 
-  async _logRun(meta, data) {
+  async _logRun(meta, data, logLevel) {
     // eslint-disable-next-line no-console
-    console.log('Run: ', `\n${data}`)
+    console.log('Run: ', `\n${{ data, logLevel }}`)
   }
 
-  async _logTestcase(meta, data) {
+  async _logTestcase(meta, data, logLevel) {
     const testcaseName = meta.tc.name
     // eslint-disable-next-line no-console
-    console.log('Test case: ', `${testcaseName}:\n${data}`)
+    console.log('Test case: ', `${testcaseName}:\n${{ data, logLevel }}`)
   }
 
-  async _logStep(meta, data) {
+  async _logStep(meta, data, logLevel) {
     const testcaseName = meta.tc.name
     const stepName = meta.step.name
     // eslint-disable-next-line no-console
-    console.log('Step: ', `${testcaseName}->${stepName}:\n${data}`)
+    console.log(
+      'Step: ',
+      `${testcaseName}->${stepName}:\n${{ data, logLevel }}`
+    )
   }
 }
 

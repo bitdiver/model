@@ -54,6 +54,13 @@ export default class StepBase {
     // Stores the data for the current testcase. If it is a single step then this is an array
     // of data.
     this.data = undefined
+
+    // This is set by the runner. The number of this step in the list of all the steps
+    // Start with '1'
+    this.countCurrent = 0
+
+    // This is set by the runner. How many steps to be excuted in this run
+    this.countCurrent = 0
   }
 
   /**
@@ -138,6 +145,8 @@ export default class StepBase {
         id: this.environmentRun.id,
       },
       step: {
+        countCurrent: this.countCurrent,
+        countAll: this.countAll,
         id: this.stepInstanceId,
         name: this.name,
         type: this.type,
@@ -145,9 +154,10 @@ export default class StepBase {
       },
       time: Date.now(),
     }
-
     if (this.type === STEP_TYPE_NORMAL) {
       meta.tc = {
+        countAll: this.environmentTestcase.countAll,
+        countCurrent: this.environmentTestcase.countCurrent,
         id: this.environmentTestcase.id,
         name: this.environmentTestcase.name,
       }
@@ -162,6 +172,8 @@ export default class StepBase {
     const promises = []
     for (const tcEnv of this.environmentTestcase) {
       meta.tc = {
+        countAll: tcEnv.countAll,
+        countCurrent: tcEnv.countCurrent,
         id: tcEnv.id,
         name: tcEnv.name,
       }

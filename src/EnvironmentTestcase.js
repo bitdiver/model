@@ -28,6 +28,13 @@ export default class EnvironmentTestcase {
 
     // The map is used to store the data
     this.map = new Map()
+
+    // This is set by the runner. The number of this test case in the list of all the test cases
+    // Start with '1'
+    this.countCurrent = 0
+
+    // This is set by the runner. How many test cases to be excuted in this run
+    this.countAll = 0
   }
 
   /**
