@@ -127,6 +127,7 @@ export default class StepBase {
       for (const tcEnv of this.environmentTestcase) {
         tcEnv.status = status
       }
+      this.environmentRun.status = status
     }
   }
 
