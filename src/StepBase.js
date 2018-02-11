@@ -232,10 +232,17 @@ export default class StepBase {
    * @return promise {promise} A promise to signal that the method is finished
    */
   run() {
-    // The run method should not be executed if the status >= Error
-    if (this.environmentTestcase.status < STATUS_ERROR) {
+    if (
+      this.type === STEP_TYPE_NORMAL &&
+      this.environmentTestcase.status < STATUS_ERROR
+    ) {
+      // The run method should not be executed if the status >= Error
       return this.doRun()
     }
+    if (this.environmentRun.status < STATUS_ERROR) {
+      return this.doRun()
+    }
+
     return Promise.resolve()
   }
 
