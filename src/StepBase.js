@@ -137,8 +137,18 @@ export default class StepBase {
    * @return promise {promise} Indicating that the message was written
    */
   _log(messageObj, logLevel = LEVEL_INFO) {
-    const data =
-      typeof messageObj === 'string' ? { message: messageObj } : messageObj
+    let data = {}
+    if (messageObj instanceof Error) {
+      data = {
+        message: messageObj.message,
+        stack: messageObj.stack,
+      }
+    } else if (typeof messageObj === 'string') {
+      data = { message: messageObj }
+    } else {
+      data = messageObj
+    }
+
     const meta = {
       run: {
         start: this.environmentRun.startTime,
@@ -218,10 +228,22 @@ export default class StepBase {
   }
 
   /**
-   * This method will be called just before the run method
+   * This method is doing the work
    * @return promise {promise} A promise to signal that the method is finished
    */
   run() {
+    // The run method should not be executed if the status >= Error
+    if (this.environmentTestcase.status < STATUS_ERROR) {
+      return this.doRun()
+    }
+    return Promise.resolve()
+  }
+
+  /**
+   *
+   * @return promise {promise} A promise to signal that the method is finished
+   */
+  doRun() {
     return Promise.resolve()
   }
 
