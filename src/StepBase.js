@@ -16,6 +16,10 @@ export const STEP_TYPE_NORMAL = 'normal'
 export const STEP_TYPE_SINGLE = 'single'
 export const STEP_TYPE_SERVER_ONLY = 'serverSingle'
 
+// The variable name for the base data dir. All file pathes for
+// step data is relative to this directory
+export const DIR_BASE_DATA = 'DIR_BASE_DATA'
+
 /**
  * The base class for a step. Later on there will be one instace of this class per step and per testcase.
  * If the step is of the type 'STEP_TYPE_SINGLE' or 'STEP_TYPE_SERVER_ONLY' Then there would be only one instance

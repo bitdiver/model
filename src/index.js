@@ -15,6 +15,7 @@ import {
   STEP_TYPE_NORMAL,
   STEP_TYPE_SINGLE,
   STEP_TYPE_SERVER_ONLY,
+  DIR_BASE_DATA,
 } from './StepBase'
 import StepRegistry from './StepRegistry'
 
@@ -48,4 +49,5 @@ export {
   LEVEL_WARNING,
   LEVEL_ERROR,
   LEVEL_FATAL,
+  DIR_BASE_DATA
 }
