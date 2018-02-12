@@ -26,6 +26,7 @@ import {
   STATUS_ERROR,
   STATUS_FATAL,
 } from './status'
+import { generateLogs } from './logHelper'
 
 export {
   EnvironmentRun,
@@ -49,5 +50,6 @@ export {
   LEVEL_WARNING,
   LEVEL_ERROR,
   LEVEL_FATAL,
-  DIR_BASE_DATA
+  DIR_BASE_DATA,
+  generateLogs,
 }

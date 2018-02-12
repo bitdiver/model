@@ -1,9 +1,5 @@
 import {
   StepBase,
-  STATUS_OK,
-  STATUS_WARNING,
-  STATUS_ERROR,
-  STATUS_FATAL,
   getLogAdapterMemory,
   EnvironmentRun,
   EnvironmentTestcase,
@@ -11,29 +7,9 @@ import {
 
 const logAdapterMemory = getLogAdapterMemory()
 
-test('Status: default status', () => {
-  const step = new StepBase()
-  expect(step.status).toEqual(STATUS_OK)
-})
-
-test('Status: set status', () => {
-  const step = new StepBase()
-  step.status = STATUS_WARNING
-  expect(step.status).toEqual(STATUS_WARNING)
-})
-
-test('Status: can not set status to better value as before.', () => {
-  const step = new StepBase()
-  step.status = STATUS_WARNING
-  expect(step.status).toEqual(STATUS_WARNING)
-  step.status = STATUS_OK
-  expect(step.status).toEqual(STATUS_WARNING)
-})
-
 test('Logging: info', () => {
   const step = getStep()
   step.logInfo('myInfo')
-  expect(step.status).toEqual(STATUS_OK)
   expect(logAdapterMemory.logs).toEqual({
     myRunId: {
       logs: [],
@@ -63,8 +39,6 @@ test('Logging: info', () => {
 test('Logging: warning', () => {
   const step = getStep()
   step.logWarning('myError')
-  expect(step.status).toEqual(STATUS_WARNING)
-  expect(step.environmentTestcase.status).toEqual(STATUS_WARNING)
   expect(logAdapterMemory.logs).toEqual({
     myRunId: {
       logs: [],
@@ -94,8 +68,6 @@ test('Logging: warning', () => {
 test('Logging: error', () => {
   const step = getStep()
   step.logError('myError')
-  expect(step.status).toEqual(STATUS_ERROR)
-  expect(step.environmentTestcase.status).toEqual(STATUS_ERROR)
   expect(logAdapterMemory.logs).toEqual({
     myRunId: {
       logs: [],
@@ -125,8 +97,6 @@ test('Logging: error', () => {
 test('Logging: fatal', () => {
   const step = getStep()
   step.logFatal('myError')
-  expect(step.status).toEqual(STATUS_FATAL)
-  expect(step.environmentTestcase.status).toEqual(STATUS_FATAL)
   expect(logAdapterMemory.logs).toEqual({
     myRunId: {
       logs: [],

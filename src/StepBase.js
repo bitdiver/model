@@ -7,10 +7,12 @@ import {
   LEVEL_FATAL,
 } from './LogAdapter'
 
+import { generateLogs } from './logHelper'
+
 import uuid from 'uuid'
 const uuidV4 = uuid.v4
 
-import { STATUS_OK, STATUS_WARNING, STATUS_ERROR, STATUS_FATAL } from './status'
+import { STATUS_ERROR } from './status'
 
 export const STEP_TYPE_NORMAL = 'normal'
 export const STEP_TYPE_SINGLE = 'single'
@@ -27,7 +29,7 @@ export const DIR_BASE_DATA = 'DIR_BASE_DATA'
  */
 export default class StepBase {
   constructor(opts = {}) {
-    this.logger = opts.logAdapter ? opts.logAdapter : getLogAdapter()
+    this.logAdapter = opts.logAdapter ? opts.logAdapter : getLogAdapter()
 
     this.type = opts.type ? opts.type : STEP_TYPE_NORMAL
 
@@ -47,9 +49,6 @@ export default class StepBase {
     // The idea of the testmode is to test the run of a step without executing it completly.
     // So the suite could be tested. This is important for long running tests
     this.testMode = false
-
-    // each step starts with this status
-    this._status = STATUS_OK
 
     // Normaly a step will only be executed if there is data defined for the testcase.
     // but some steps do not need any data. Then this must be set to false.
@@ -91,8 +90,6 @@ export default class StepBase {
    * @return promise {promise} Indicating that the message was written
    */
   logWarning(options) {
-    this.status = STATUS_WARNING
-    this._setTestcaseStatus(STATUS_WARNING)
     return this._log(options, LEVEL_WARNING)
   }
 
@@ -103,8 +100,6 @@ export default class StepBase {
    * @return promise {promise} Indicating that the message was written
    */
   logError(options) {
-    this.status = STATUS_ERROR
-    this._setTestcaseStatus(STATUS_ERROR)
     return this._log(options, LEVEL_ERROR)
   }
 
@@ -115,105 +110,25 @@ export default class StepBase {
    * @return promise {promise} Indicating that the message was written
    */
   logFatal(options) {
-    this.status = STATUS_FATAL
-
-    // On a fatal error we would like to stop the whole test
-    this.environmentRun.status = STATUS_FATAL
-
-    this._setTestcaseStatus(STATUS_FATAL)
     return this._log(options, LEVEL_FATAL)
   }
 
-  _setTestcaseStatus(status) {
-    if (this.type === STEP_TYPE_NORMAL) {
-      this.environmentTestcase.status = status
-    } else {
-      for (const tcEnv of this.environmentTestcase) {
-        tcEnv.status = status
-      }
-      this.environmentRun.status = status
-    }
-  }
-
   /**
-   * Calls the logger with the given messageObj
+   * Calls the logger with the given messageObj.
+   * If this is a single step the log will be written for each testcase environment
    * @param messageObj {object|string} Either a message or a json object to be logged
    * @param logLevel {string} The loglevel to be used
    * @return promise {promise} Indicating that the message was written
    */
   _log(messageObj, logLevel = LEVEL_INFO) {
-    let data = {}
-    if (messageObj instanceof Error) {
-      data = {
-        message: messageObj.message,
-        stack: messageObj.stack,
-      }
-    } else if (typeof messageObj === 'string') {
-      data = { message: messageObj }
-    } else {
-      data = messageObj
-    }
-
-    const meta = {
-      run: {
-        start: this.environmentRun.startTime,
-        id: this.environmentRun.id,
-      },
-      step: {
-        countCurrent: this.countCurrent,
-        countAll: this.countAll,
-        id: this.stepInstanceId,
-        name: this.name,
-        type: this.type,
-        status: this.status,
-      },
-      time: Date.now(),
-    }
-    if (this.type === STEP_TYPE_NORMAL) {
-      meta.tc = {
-        countAll: this.environmentTestcase.countAll,
-        countCurrent: this.environmentTestcase.countCurrent,
-        id: this.environmentTestcase.id,
-        name: this.environmentTestcase.name,
-      }
-      return this.logger.log({
-        data,
-        meta,
-        logLevel,
-      })
-    }
-
-    // Single steps
-    const promises = []
-    for (const tcEnv of this.environmentTestcase) {
-      meta.tc = {
-        countAll: tcEnv.countAll,
-        countCurrent: tcEnv.countCurrent,
-        id: tcEnv.id,
-        name: tcEnv.name,
-      }
-      promises.push(
-        this.logger.log({
-          data,
-          meta,
-          logLevel,
-        })
-      )
-    }
-    return Promise.all(promises)
-  }
-
-  /**
-   * Set the status of the step
-   * @param newStatus {number} The new status for the testcase
-   */
-  set status(newStatus) {
-    if (newStatus > this._status) {
-      this._status = newStatus
-    }
-  }
-  get status() {
-    return this._status
+    return generateLogs(
+      this.environmentRun,
+      this.environmentTestcase,
+      this.logAdapter,
+      messageObj,
+      logLevel,
+      this
+    )
   }
 
   /**

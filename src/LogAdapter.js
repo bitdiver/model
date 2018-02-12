@@ -30,18 +30,18 @@ export class LogAdapter {
    *       meta:{
    *         run:{
    *           start: <time>,
-   *           id: 'id'
+   *           id: 'id' // RunEnvironment ID
    *         },
    *         tc:{
    *           tcCountCurrent: tcCountCurrent,
    *           tcCountAll: tcCountAll,
-   *           id: 'id',
+   *           id: 'id', // TestcaseEnvironment ID
    *           name: 'great tc name'
    *         },
    *         step:{
    *           stepCountCurrent: stepCountCurrent,
    *           stepCountAll: stepCountAll,
-   *           id: 'id',
+   *           id: 'id', // testcase instance
    *           name: 'great step name'
    *           typ: ('singel'| ''|)
    *         }
