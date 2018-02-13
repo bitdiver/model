@@ -26,6 +26,16 @@ export function generateLogs(
       message: messageObj.message,
       stack: messageObj.stack,
     }
+  } else if (
+    typeof messageObj === 'object' &&
+    messageObj.message !== undefined &&
+    messageObj.stack !== undefined
+  ) {
+    data = {
+      message: messageObj.message,
+      stack: messageObj.stack,
+    }
+    this.messages.push(data)
   } else if (typeof messageObj === 'string') {
     data = { message: messageObj }
   } else {
