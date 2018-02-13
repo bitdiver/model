@@ -35,7 +35,6 @@ export function generateLogs(
       message: messageObj.message,
       stack: messageObj.stack,
     }
-    this.messages.push(data)
   } else if (typeof messageObj === 'string') {
     data = { message: messageObj }
   } else {
