@@ -57,6 +57,13 @@ export default class StepBase {
     // Stores the data for the current testcase. If it is a single step then this is an array
     // of data.
     this.data = undefined
+
+    // This is set by the runner. The number of this stepin the list of all the steps
+    // Start with '1'
+    this.countCurrent = 0
+
+    // This is set by the runner. How many steps to be excuted in this run
+    this.countAll = 0
   }
 
   /**
@@ -120,88 +127,91 @@ export default class StepBase {
   }
 
   /**
-	 * Logs a debug message.
-	 * @param options {string/object} The message to log or the properties
-	 * @param environmentTestcase {object} The testcase environment. If given the log
-	 * will only be written for this testcase. If not the log will be written for all the
-	 * testcases
-	 * @return promise {promise} Indicating that the message was written
-	 */
-	logDebug(options, environmentTestcase) {
-		assert.ok(options, 'No log message given')
-		return this._log(options, LEVEL_DEBUG, environmentTestcase)
-	}
-
-	/**
-	 * Logs a info message.
-	 * @param options {string/object} The message to log or the properties
-	 * @param environmentTestcase {object} The testcase environment. If given the log
-	 * will only be written for this testcase. If not the log will be written for all the
-   * @return promise {promise} Indicating that the message was written
-	 */
-	logInfo(options, environmentTestcase) {
-		assert.ok(options, 'No log message given')
-		return this._log(options, LEVEL_INFO, environmentTestcase)
-	}
-
-	/**
-	 * Logs a warning message.
-	 * @param options {string/object} The message to log or the properties
-	 * @param environmentTestcase {object} The testcase environment. If given the log
-	 * will only be written for this testcase. If not the log will be written for all the
-   * @return promise {promise} Indicating that the message was written
-	 */
-	logWarning(options, environmentTestcase) {
-		assert.ok(options, 'No log message given')
-		return this._log(options, LEVEL_WARNING, environmentTestcase)
-	}
-
-	/**
-	 * Logs a error message.
-	 * Error normaly means that the testcase gots an error
-	 * @param options {string/object} The message to log or the properties
-	 * @param environmentTestcase {object} The testcase environment. If given the log
-	 * will only be written for this testcase. If not the log will be written for all the
-	 * @return promise {promise} Indicating that the message was written
-	 */
-	logError(options, environmentTestcase) {
-		assert.ok(options, 'No log message given')
-		return this._log(options, LEVEL_ERROR, environmentTestcase)
-	}
-
-	/**
-	 * Logs a fatal message.
-	 * Fatal normaly means that the complete test run needs to be stopped
-	 * @param options {string/object} The message to log or the properties
-	 * @param environmentTestcase {object} The testcase environment. If given the log
-	 * will only be written for this testcase. If not the log will be written for all the
-	 * @return promise {promise} Indicating that the message was written
-	 */
-	logFatal(options, environmentTestcase) {
-		assert.ok(options, 'No log message given')
-		return this._log(options, LEVEL_FATAL, environmentTestcase)
-	}
-
-	/**
-	 * Calls the logger with the given messageObj.
-	 * If this is a single step the log will be written for each testcase environment
-	 * @param messageObj {object|string} Either a message or a json object to be logged
-	 * @param logLevel {string} The loglevel to be used
+   * Logs a debug message.
+   * @param options {string/object} The message to log or the properties
    * @param environmentTestcase {object} The testcase environment. If given the log
    * will only be written for this testcase. If not the log will be written for all the
-	 * @return promise {promise} Indicating that the message was written
-	 */
-	_log(messageObj, logLevel = LEVEL_INFO, environmentTestcase = this.environmentTestcase) {
-		assert.ok(messageObj, 'No log message given')
+   * testcases
+   * @return promise {promise} Indicating that the message was written
+   */
+  logDebug(options, environmentTestcase) {
+    assert.ok(options, 'No log message given')
+    return this._log(options, LEVEL_DEBUG, environmentTestcase)
+  }
 
-		return generateLogs(
-			this.environmentRun,
-			environmentTestcase,
-			this.logAdapter,
-			messageObj,
-			logLevel,
-			this
-		)
-	}
+  /**
+   * Logs a info message.
+   * @param options {string/object} The message to log or the properties
+   * @param environmentTestcase {object} The testcase environment. If given the log
+   * will only be written for this testcase. If not the log will be written for all the
+   * @return promise {promise} Indicating that the message was written
+   */
+  logInfo(options, environmentTestcase) {
+    assert.ok(options, 'No log message given')
+    return this._log(options, LEVEL_INFO, environmentTestcase)
+  }
 
+  /**
+   * Logs a warning message.
+   * @param options {string/object} The message to log or the properties
+   * @param environmentTestcase {object} The testcase environment. If given the log
+   * will only be written for this testcase. If not the log will be written for all the
+   * @return promise {promise} Indicating that the message was written
+   */
+  logWarning(options, environmentTestcase) {
+    assert.ok(options, 'No log message given')
+    return this._log(options, LEVEL_WARNING, environmentTestcase)
+  }
+
+  /**
+   * Logs a error message.
+   * Error normaly means that the testcase gots an error
+   * @param options {string/object} The message to log or the properties
+   * @param environmentTestcase {object} The testcase environment. If given the log
+   * will only be written for this testcase. If not the log will be written for all the
+   * @return promise {promise} Indicating that the message was written
+   */
+  logError(options, environmentTestcase) {
+    assert.ok(options, 'No log message given')
+    return this._log(options, LEVEL_ERROR, environmentTestcase)
+  }
+
+  /**
+   * Logs a fatal message.
+   * Fatal normaly means that the complete test run needs to be stopped
+   * @param options {string/object} The message to log or the properties
+   * @param environmentTestcase {object} The testcase environment. If given the log
+   * will only be written for this testcase. If not the log will be written for all the
+   * @return promise {promise} Indicating that the message was written
+   */
+  logFatal(options, environmentTestcase) {
+    assert.ok(options, 'No log message given')
+    return this._log(options, LEVEL_FATAL, environmentTestcase)
+  }
+
+  /**
+   * Calls the logger with the given messageObj.
+   * If this is a single step the log will be written for each testcase environment
+   * @param messageObj {object|string} Either a message or a json object to be logged
+   * @param logLevel {string} The loglevel to be used
+   * @param environmentTestcase {object} The testcase environment. If given the log
+   * will only be written for this testcase. If not the log will be written for all the
+   * @return promise {promise} Indicating that the message was written
+   */
+  _log(
+    messageObj,
+    logLevel = LEVEL_INFO,
+    environmentTestcase = this.environmentTestcase
+  ) {
+    assert.ok(messageObj, 'No log message given')
+
+    return generateLogs(
+      this.environmentRun,
+      environmentTestcase,
+      this.logAdapter,
+      messageObj,
+      logLevel,
+      this
+    )
+  }
 }
