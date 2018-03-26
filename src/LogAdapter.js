@@ -15,7 +15,7 @@ export const LEVEL_FATAL = 'fatal'
 export class LogAdapter {
   constructor() {
     // default is not to write to console
-    this.writeConsole = true
+    this.writeConsole = false
   }
 
   /**
