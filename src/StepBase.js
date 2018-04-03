@@ -52,7 +52,10 @@ export default class StepBase {
 
     // Normaly a step will only be executed if there is data defined for the testcase.
     // but some steps do not need any data. Then this must be set to false.
-    this.needData = opts.needData ? opts.needData : true
+    this.needData = true
+    if(opts.needData !== undefined){
+      this.needData = opts.needData
+    }
 
     // Stores the data for the current testcase. If it is a single step then this is an array
     // of data.
