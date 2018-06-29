@@ -56,6 +56,6 @@
   },
   "dependencies": {
     "jsonfile": "4.0.0",
-    "uuid": "3.2.1"
+    "uuid": "3.3.0"
   }
 }
