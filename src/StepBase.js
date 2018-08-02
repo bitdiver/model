@@ -70,7 +70,7 @@ export default class StepBase {
 
     // If this is set to true, the step will executed even if the testcase is already failed
     // This is important for cleanup steps, for Example.
-    this.runOnError = opts.runOnError ? opts.runOnError : false
+    this.runOnError = opts.runOnError !== undefined ? opts.runOnError : false
 
     // Allows to define how many parallel exection are possible on a per step basis.
     // This value is normaly defined in the runner, but when given here it will overwrite
