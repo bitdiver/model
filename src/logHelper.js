@@ -83,21 +83,19 @@ export function generateLogs(
       // ----------------------------------------------
 
       for (const tcEnv of environmentTestcase) {
-        if (tcEnv.running) {
-          meta.tc = {
-            countAll: tcEnv.countAll,
-            countCurrent: tcEnv.countCurrent,
-            id: tcEnv.id,
-            name: tcEnv.name,
-          }
-          promises.push(
-            logAdapter.log({
-              data,
-              meta,
-              logLevel,
-            })
-          )
+        meta.tc = {
+          countAll: tcEnv.countAll,
+          countCurrent: tcEnv.countCurrent,
+          id: tcEnv.id,
+          name: tcEnv.name,
         }
+        promises.push(
+          logAdapter.log({
+            data,
+            meta,
+            logLevel,
+          })
+        )
       }
     }
   } else {
