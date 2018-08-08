@@ -12,7 +12,6 @@ import {
 } from './LogAdapter'
 
 import { generateLogs } from './logHelper'
-import { STATUS_ERROR } from './status'
 
 export const STEP_TYPE_NORMAL = 'normal'
 export const STEP_TYPE_SINGLE = 'single'
@@ -99,23 +98,12 @@ export default class StepBase {
    * @return promise {promise} A promise to signal that the method is finished
    */
   run() {
-    if (
-      this.type === STEP_TYPE_NORMAL &&
-      this.environmentTestcase.status < STATUS_ERROR
-    ) {
-      // The run method should not be executed if the status >= Error
-      return this.doRun()
-    }
-    if (this.environmentRun.status < STATUS_ERROR) {
-      return this.doRun()
-    }
-
-    return Promise.resolve()
+    return this.doRun()
   }
 
   /**
-   *
    * @return promise {promise} A promise to signal that the method is finished
+   * @deprecated This methode is not used any more. Take the run method direcktly
    */
   doRun() {
     return Promise.resolve()
