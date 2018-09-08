@@ -55,7 +55,7 @@
     "semantic-release": "15.9.3"
   },
   "dependencies": {
-    "jsonfile": "4.0.0",
+    "jsonfile": "5.0.0",
     "uuid": "3.3.2"
   }
 }
