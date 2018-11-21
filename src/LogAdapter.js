@@ -111,6 +111,7 @@ export class LogAdapter {
       // This is a run log
       return this._logRun(meta, data, logLevel)
     }
+    return Promise.resolve()
   }
 
   async _logRun(meta, data, logLevel) {
