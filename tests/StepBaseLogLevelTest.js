@@ -5,7 +5,7 @@ import {
   EnvironmentTestcase,
 } from '../lib/index'
 
-const LOG_ADAPTER_LOG_LEVEL = 'debug'
+const LOG_ADAPTER_LOG_LEVEL = 'error'
 
 const logAdapterMemory = getLogAdapterMemory({
   logLevel: LOG_ADAPTER_LOG_LEVEL,
@@ -14,59 +14,13 @@ const logAdapterMemory = getLogAdapterMemory({
 test('Logging: info', () => {
   const step = getStep()
   step.logInfo('myInfo')
-  expect(logAdapterMemory.logs).toEqual({
-    myRunId: {
-      logs: [],
-      testcases: {
-        myTcName: {
-          countAll: 12,
-          countCurrent: 2,
-          logs: [],
-          steps: {
-            myStep: {
-              logs: [
-                {
-                  countCurrent: 3,
-                  countAll: 15,
-                  data: { message: 'myInfo' },
-                  logLevel: 'info',
-                },
-              ],
-            },
-          },
-        },
-      },
-    },
-  })
+  expect(logAdapterMemory.logs).toEqual({})
 })
 
 test('Logging: warning', () => {
   const step = getStep()
   step.logWarning('myError')
-  expect(logAdapterMemory.logs).toEqual({
-    myRunId: {
-      logs: [],
-      testcases: {
-        myTcName: {
-          countAll: 12,
-          countCurrent: 2,
-          logs: [],
-          steps: {
-            myStep: {
-              logs: [
-                {
-                  countCurrent: 3,
-                  countAll: 15,
-                  data: { message: 'myError' },
-                  logLevel: 'warning',
-                },
-              ],
-            },
-          },
-        },
-      },
-    },
-  })
+  expect(logAdapterMemory.logs).toEqual({})
 })
 
 test('Logging: error', () => {

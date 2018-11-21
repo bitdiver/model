@@ -27,8 +27,8 @@ import { LogAdapter } from './LogAdapter'
  *
  */
 export class LogAdapterMemory extends LogAdapter {
-  constructor() {
-    super()
+  constructor(opts = {}) {
+    super(opts)
     this.logs = {}
   }
 

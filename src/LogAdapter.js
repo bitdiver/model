@@ -1,7 +1,6 @@
 'use strict'
 
 import assert from 'assert'
-
 export const LEVEL_DEBUG = 'debug'
 export const LEVEL_INFO = 'info'
 export const LEVEL_WARNING = 'warning'
@@ -13,9 +12,11 @@ export const LEVEL_FATAL = 'fatal'
  * @class
  */
 export class LogAdapter {
-  constructor() {
+  constructor(opts = {}) {
     // default is not to write to console
     this.writeConsole = false
+
+    this.logAdapterLogLevel = opts.logLevel ? opts.logLevel : LEVEL_DEBUG
   }
 
   /**
@@ -23,6 +24,36 @@ export class LogAdapter {
    * starts a new run
    */
   reset() {}
+
+  /**
+   * Gets a numeric loglevel by loglevel symbol
+   * @param loglevel {string} the loglevel to calc the numeric value for
+   * @param logLevel {number} the numeric value
+   */
+  _getLogLevel(logLevel) {
+    if (LEVEL_DEBUG === logLevel) {
+      return 1
+    } else if (LEVEL_INFO === logLevel) {
+      return 2
+    } else if (LEVEL_WARNING === logLevel) {
+      return 3
+    } else if (LEVEL_ERROR === logLevel) {
+      return 4
+    } else if (LEVEL_FATAL === logLevel) {
+      return 5
+    }
+  }
+
+  /**
+   * Function which determines if a log message should be logged
+   * @param messageLogLevel {string} the message loglevel
+   */
+  _messageShouldBeLogged(messageLogLevel) {
+    return (
+      this._getLogLevel(messageLogLevel) >=
+      this._getLogLevel(this.logAdapterLogLevel)
+    )
+  }
 
   /**
    * @param data {object} The object with the data to be logged and the needed meta data
@@ -59,21 +90,27 @@ export class LogAdapter {
     const data = logMessage.data
     const logLevel = logMessage.logLevel
 
-    // Set the time of the log
-    meta.logTime = Date.now()
+    const messageShouldBeLogged = this._messageShouldBeLogged(
+      logLevel,
+      this.logAdapterLogLevel
+    )
+    if (messageShouldBeLogged) {
+      // Set the time of the log
+      meta.logTime = Date.now()
 
-    // set the loglevel
-    meta.logLevel = logMessage.logLevel
+      // set the loglevel
+      meta.logLevel = logMessage.logLevel
 
-    if (meta.step !== undefined && meta.step.id !== undefined) {
-      // this is a step log
-      return this._logStep(meta, data, logLevel)
-    } else if (meta.tc !== undefined && meta.tc.id !== undefined) {
-      // This is a testcase log
-      return this._logTestcase(meta, data, logLevel)
+      if (meta.step !== undefined && meta.step.id !== undefined) {
+        // this is a step log
+        return this._logStep(meta, data, logLevel)
+      } else if (meta.tc !== undefined && meta.tc.id !== undefined) {
+        // This is a testcase log
+        return this._logTestcase(meta, data, logLevel)
+      }
+      // This is a run log
+      return this._logRun(meta, data, logLevel)
     }
-    // This is a run log
-    return this._logRun(meta, data, logLevel)
   }
 
   async _logRun(meta, data, logLevel) {
