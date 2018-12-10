@@ -3,13 +3,13 @@ import uuid from 'uuid'
 const uuidV4 = uuid.v4
 
 import {
-  getLogAdapter,
-  LEVEL_INFO,
+  getLogAdapterConsole,
   LEVEL_DEBUG,
+  LEVEL_INFO,
   LEVEL_WARNING,
   LEVEL_ERROR,
   LEVEL_FATAL,
-} from './LogAdapter'
+} from '@bitdiver/logadapter'
 
 import { generateLogs } from './logHelper'
 
@@ -28,7 +28,7 @@ export const DIR_BASE_DATA = 'DIR_BASE_DATA'
  */
 export default class StepBase {
   constructor(opts = {}) {
-    this.logAdapter = opts.logAdapter ? opts.logAdapter : getLogAdapter()
+    this.logAdapter = opts.logAdapter ? opts.logAdapter : getLogAdapterConsole()
 
     this.type = opts.type ? opts.type : STEP_TYPE_NORMAL
 

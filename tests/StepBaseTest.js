@@ -1,11 +1,8 @@
-import {
-  StepBase,
-  getLogAdapterMemory,
-  EnvironmentRun,
-  EnvironmentTestcase,
-} from '../lib/index'
+import { StepBase, EnvironmentRun, EnvironmentTestcase } from '../lib/index'
 
-const logAdapterMemory = getLogAdapterMemory()
+import { getLogAdapterMemory } from '@bitdiver/logadapter'
+
+const logAdapterMemory = getLogAdapterMemory({ logLevel: 'debug' })
 
 test('Logging: info', () => {
   const step = getStep()
@@ -124,7 +121,7 @@ test('Logging: fatal', () => {
 })
 
 function getStep() {
-  logAdapterMemory.clear()
+  logAdapterMemory.reset()
   const step = new StepBase({ logAdapter: logAdapterMemory })
   const envRun = new EnvironmentRun()
   envRun.id = 'myRunId'

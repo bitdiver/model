@@ -45,6 +45,7 @@ export function generateLogs(
     run: {
       start: environmentRun.startTime,
       id: environmentRun.id,
+      name: environmentRun.name,
     },
     time: Date.now(),
   }

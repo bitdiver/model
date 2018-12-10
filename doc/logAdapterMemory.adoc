@@ -1,7 +1,7 @@
 == LogAdapterMemory
 This is a special implementation of a LogAdapter. Its mainly used for testing.
 If there is a unit test for a step this adapter could be used to collect the
-created logs and to validate them
+created logs to validate them
 
 
 .Format the data is stored
