@@ -1,8 +1,44 @@
-import { StepBase, EnvironmentRun, EnvironmentTestcase } from '../lib/index'
+import {
+  StepBase,
+  EnvironmentRun,
+  EnvironmentTestcase,
+  STEP_TYPE_NORMAL,
+  STEP_TYPE_SINGLE,
+  STEP_TYPE_SERVER_ONLY,
+} from '../lib/index'
 
 import { getLogAdapterMemory } from '@bitdiver/logadapter'
 
 const logAdapterMemory = getLogAdapterMemory({ logLevel: 'debug' })
+
+test('Logging: debug', () => {
+  const step = getStep()
+  step.logDebug('myDebug')
+  expect(logAdapterMemory.logs).toEqual({
+    myRunId: {
+      logs: [],
+      testcases: {
+        myTcName: {
+          countAll: 12,
+          countCurrent: 2,
+          logs: [],
+          steps: {
+            myStep: {
+              logs: [
+                {
+                  countCurrent: 3,
+                  countAll: 15,
+                  data: { message: 'myDebug' },
+                  logLevel: 'debug',
+                },
+              ],
+            },
+          },
+        },
+      },
+    },
+  })
+})
 
 test('Logging: info', () => {
   const step = getStep()
@@ -118,6 +154,61 @@ test('Logging: fatal', () => {
       },
     },
   })
+})
+
+test('Create step needData = false', () => {
+  const step = new StepBase({ needData: false })
+  expect(step.needData).toEqual(false)
+})
+test('Create step needData = undefined', () => {
+  const step = new StepBase()
+  expect(step.needData).toEqual(true)
+})
+
+test('Create step runOnError = true', () => {
+  const step = new StepBase({ runOnError: true })
+  expect(step.runOnError).toEqual(true)
+})
+test('Create step runOnError = undefined', () => {
+  const step = new StepBase()
+  expect(step.runOnError).toEqual(false)
+})
+
+test('Create step type = undefined', () => {
+  const step = new StepBase()
+  expect(step.type).toEqual('normal')
+})
+
+test('Create step type = STEP_TYPE_SINGLE', () => {
+  const step = new StepBase({ type: STEP_TYPE_SINGLE })
+  expect(step.type).toEqual('single')
+})
+
+test('Create step type = STEP_TYPE_SERVER_ONLY', () => {
+  const step = new StepBase({ type: STEP_TYPE_SERVER_ONLY })
+  expect(step.type).toEqual('serverSingle')
+})
+
+test('Create step type = STEP_TYPE_NORMAL', () => {
+  const step = new StepBase({ type: STEP_TYPE_NORMAL })
+  expect(step.type).toEqual('normal')
+})
+
+test('Create step invalid type', () => {
+  expect(() => {
+    // eslint-disable-next-line no-new
+    new StepBase({ type: 'gum' })
+  }).toThrow("The stepType 'gum' is not a valid type")
+})
+
+test('make coverage report lucky', async () => {
+  const step = new StepBase({ type: STEP_TYPE_NORMAL })
+  await step.start()
+  await step.beforeRun()
+  await step.run()
+  await step.doRun()
+  await step.afterRun()
+  await step.end()
 })
 
 function getStep() {

@@ -11,6 +11,13 @@ test('EnvironmentTestcaseTest: set status', () => {
   expect(env.status).toEqual(STATUS_WARNING)
 })
 
+test('EnvironmentTestcaseTest: set finish', () => {
+  const env = new EnvironmentTestcase()
+  expect(env.running).toEqual(true)
+  env.finished()
+  expect(env.running).toEqual(false)
+})
+
 test('EnvironmentTestcaseTest: can not set status to better value as before.', () => {
   const env = new EnvironmentTestcase()
   env.status = STATUS_WARNING

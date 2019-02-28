@@ -30,7 +30,19 @@ export default class StepBase {
   constructor(opts = {}) {
     this.logAdapter = opts.logAdapter ? opts.logAdapter : getLogAdapterConsole()
 
-    this.type = opts.type ? opts.type : STEP_TYPE_NORMAL
+    if (opts.type !== undefined) {
+      if (
+        opts.type === STEP_TYPE_NORMAL ||
+        opts.type === STEP_TYPE_SINGLE ||
+        opts.type === STEP_TYPE_SERVER_ONLY
+      ) {
+        this.type = opts.type
+      } else {
+        throw new Error(`The stepType '${opts.type}' is not a valid type`)
+      }
+    } else {
+      this.type = STEP_TYPE_NORMAL
+    }
 
     // creates a unique step instance id
     this.stepInstanceId = uuidV4()
@@ -47,6 +59,7 @@ export default class StepBase {
 
     // The idea of the testmode is to test the run of a step without executing it completly.
     // So the suite could be tested. This is important for long running tests
+    // The mode is set by the runner
     this.testMode = false
 
     // Normaly a step will only be executed if there is data defined for the testcase.
@@ -98,7 +111,7 @@ export default class StepBase {
    * @return promise {promise} A promise to signal that the method is finished
    */
   run() {
-    return this.doRun()
+    return Promise.resolve()
   }
 
   /**
