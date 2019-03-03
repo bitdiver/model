@@ -206,7 +206,6 @@ test('make coverage report lucky', async () => {
   await step.start()
   await step.beforeRun()
   await step.run()
-  await step.doRun()
   await step.afterRun()
   await step.end()
 })

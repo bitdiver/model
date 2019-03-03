@@ -17,7 +17,7 @@ test('Register to steps with the same name', () => {
   expect(step.name).toEqual('gumStep')
 
   registry.registerStep('gumStep', GumStep)
-  
+
   const step2 = registry.getStep('gumStep')
   expect(step2.name).toEqual('gumStep')
   expect(step2.myId).toEqual('otherStep')

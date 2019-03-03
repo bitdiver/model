@@ -114,7 +114,6 @@ export default class StepBase {
     return Promise.resolve()
   }
 
-
   /**
    * This method will be called just after the run is finished
    * This method will be called even if the run method has failed
