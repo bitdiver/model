@@ -114,13 +114,6 @@ export default class StepBase {
     return Promise.resolve()
   }
 
-  /**
-   * @return promise {promise} A promise to signal that the method is finished
-   * @deprecated This methode is not used any more. Take the run method direcktly
-   */
-  doRun() {
-    return Promise.resolve()
-  }
 
   /**
    * This method will be called just after the run is finished
