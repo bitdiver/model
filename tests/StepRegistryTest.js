@@ -1,4 +1,4 @@
-import { StepRegistry, StepBase } from '../lib/index'
+import { StepRegistry, StepBase } from '../src/index'
 
 test('Test that the step could be registered', () => {
   const registry = new StepRegistry()

@@ -1,4 +1,4 @@
-import { EnvironmentRun, STATUS_OK, STATUS_WARNING } from '../lib/index'
+import { EnvironmentRun, STATUS_OK, STATUS_WARNING } from '../src/index'
 
 test('EnvironmentRun: default status', () => {
   const env = new EnvironmentRun()

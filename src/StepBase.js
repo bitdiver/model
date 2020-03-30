@@ -1,7 +1,5 @@
 import assert from 'assert'
-import uuid from 'uuid'
-const uuidV4 = uuid.v4
-
+import { v4 as uuidv4 } from 'uuid'
 import {
   getLogAdapterConsole,
   LEVEL_DEBUG,
@@ -45,7 +43,7 @@ export default class StepBase {
     }
 
     // creates a unique step instance id
-    this.stepInstanceId = uuidV4()
+    this.stepInstanceId = uuidv4()
 
     // A step can store information in the testcase environment. So a step could provide data
     // to other steps in the same testcase. For a single step or a server only step this is an

@@ -1,4 +1,4 @@
-import { StepBase, EnvironmentRun, EnvironmentTestcase } from '../lib/index'
+import { StepBase, EnvironmentRun, EnvironmentTestcase } from '../src/index'
 
 import { getLogAdapterMemory } from '@bitdiver/logadapter'
 

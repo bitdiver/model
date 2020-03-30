@@ -5,7 +5,7 @@ import {
   STEP_TYPE_NORMAL,
   STEP_TYPE_SINGLE,
   STEP_TYPE_SERVER_ONLY,
-} from '../lib/index'
+} from '../src/index'
 
 import { getLogAdapterMemory } from '@bitdiver/logadapter'
 

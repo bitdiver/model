@@ -1,6 +1,4 @@
-import uuid from 'uuid'
-const uuidV4 = uuid.v4
-
+import { v4 as uuidv4 } from 'uuid'
 import { STATUS_OK } from './status'
 
 /**
@@ -11,7 +9,7 @@ import { STATUS_OK } from './status'
 export default class EnvironmentTestcase {
   constructor(opts = {}) {
     // The testcase instance id
-    this.id = uuidV4()
+    this.id = uuidv4()
 
     // The name of this testcasde
     this.name = opts.name

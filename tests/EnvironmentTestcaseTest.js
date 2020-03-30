@@ -1,4 +1,4 @@
-import { EnvironmentTestcase, STATUS_OK, STATUS_WARNING } from '../lib/index'
+import { EnvironmentTestcase, STATUS_OK, STATUS_WARNING } from '../src/index'
 
 test('EnvironmentTestcaseTest: default status', () => {
   const env = new EnvironmentTestcase()

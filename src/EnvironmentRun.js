@@ -1,6 +1,4 @@
-import uuid from 'uuid'
-const uuidV4 = uuid.v4
-
+import { v4 as uuidv4 } from 'uuid'
 import { STATUS_OK } from './status'
 /**
  * The run enviroment will be created when a new run starts
@@ -9,7 +7,7 @@ import { STATUS_OK } from './status'
 export default class EnvironmentRun {
   constructor(opts = {}) {
     // The run id
-    this.id = uuidV4()
+    this.id = uuidv4()
 
     // The name of the suite
     this.name = opts.name
