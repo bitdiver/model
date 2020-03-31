@@ -60,6 +60,6 @@
 	"dependencies": {
 		"@babel/runtime": "7.9.2",
 		"@bitdiver/logadapter": "1.4.3",
-		"uuid": "7.0.2"
+		"uuid": "7.0.3"
 	}
 }
