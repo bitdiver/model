@@ -1,0 +1,13 @@
+test:
+  - "tests/**/*"
+
+documentation:
+  - docs/**/*
+  - "**/*.md"
+
+ci:
+  - ".github/workflows/*"
+  - .travis.yml
+
+npm:
+  - .npmignore
