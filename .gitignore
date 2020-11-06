@@ -1,6 +1,12 @@
 lib
+.DS_Store
 node_modules
-coverage
 jsdoc
 npm-debug.log
 yarn.lock
+build
+*.log
+*.dump
+*.node
+.test
+.tmp
