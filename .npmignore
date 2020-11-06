@@ -1,13 +1,11 @@
-coverage
-node_modules
 build
 src
+doc
 *.log
 *.tmp
-.DS_Store
 .test
 .tmp
-.gitignore
-.npmrc
 .travis.yml
-.npmignore
+tests
+.vscode
+.github
