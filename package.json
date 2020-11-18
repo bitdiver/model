@@ -1,65 +1,65 @@
 {
-	"name": "@bitdiver/model",
-	"version": "0.0.0-semantic-release",
-	"description": "",
-	"main": "lib/index.js",
-	"publishConfig": {
-		"access": "public"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/bitdiver/model.git"
-	},
-	"bugs": {
-		"url": "https://github.com/bitdiver/model/issues"
-	},
-	"homepage": "https://github.com/bitdiver/model#readme",
-	"scripts": {
-		"build": "npm run src_format && npm run src_lint && babel src -d lib",
-		"src_lint": "eslint src tests",
-		"src_format": "prettier --no-semi --single-quote --trailing-comma es5 --write \"{src,tests}/**/*.js\"",
-		"test_only": "jest",
-		"test": "npm run build && jest -c jest.config.json",
-		"debug": "npm run build && node --inspect-brk ./node_modules/.bin/jest -i --config=./jest.config.json",
-		"prepare": "npm run build"
-	},
-	"contributors": [
-		{
-			"name": "Torsten Link",
-			"email": "torstenlink@gmx.de"
-		},
-		{
-			"name": "Markus Felten",
-			"email": "markus.felten@gmx.de"
-		}
-	],
-	"license": "ISC",
-	"devDependencies": {
-		"@babel/cli": "7.12.1",
-		"@babel/core": "7.12.3",
-		"@babel/node": "7.12.6",
-		"@babel/plugin-proposal-object-rest-spread": "7.12.1",
-		"@babel/plugin-transform-runtime": "7.12.1",
-		"@babel/polyfill": "7.12.1",
-		"@babel/preset-env": "7.12.1",
-		"@babel/register": "7.12.1",
-		"babel-core": "7.0.0-bridge.0",
-		"babel-eslint": "10.1.0",
-		"babel-jest": "26.6.3",
-		"cz-conventional-changelog": "3.3.0",
-		"eslint": "7.13.0",
-		"eslint-config-prettier": "6.15.0",
-		"eslint-plugin-babel": "5.3.1",
-		"jest": "26.6.3",
-		"jest-cli": "26.6.3",
-		"jest-environment-node-debug": "2.0.0",
-		"prettier": "2.1.2",
-		"regenerator-runtime": "0.13.7",
-		"semantic-release": "17.2.2"
-	},
-	"dependencies": {
-		"@babel/runtime": "7.12.5",
-		"@bitdiver/logadapter": "1.4.4",
-		"uuid": "8.3.1"
-	}
+  "name": "@bitdiver/model",
+  "version": "0.0.0-semantic-release",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/index.js",
+  "description": "",
+  "contributors": [
+    {
+      "name": "Torsten Link",
+      "email": "torstenlink@gmx.de"
+    },
+    {
+      "name": "Markus Felten",
+      "email": "markus.felten@gmx.de"
+    }
+  ],
+  "license": "ISC",
+  "scripts": {
+    "prepare": "npm run build",
+    "test_only": "jest",
+    "test": "npm run build && jest -c jest.config.json",
+    "build": "npm run src_format && npm run src_lint && babel src -d lib",
+    "debug": "npm run build && node --inspect-brk ./node_modules/.bin/jest -i --config=./jest.config.json",
+    "src_format": "prettier --no-semi --single-quote --trailing-comma es5 --write \"{src,tests}/**/*.js\"",
+    "src_lint": "eslint src tests"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.12.5",
+    "@bitdiver/logadapter": "1.4.4",
+    "uuid": "8.3.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.12.1",
+    "@babel/core": "7.12.3",
+    "@babel/node": "7.12.6",
+    "@babel/plugin-proposal-object-rest-spread": "7.12.1",
+    "@babel/plugin-transform-runtime": "7.12.1",
+    "@babel/polyfill": "7.12.1",
+    "@babel/preset-env": "7.12.1",
+    "@babel/register": "7.12.1",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "10.1.0",
+    "babel-jest": "26.6.3",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint": "7.13.0",
+    "eslint-config-prettier": "6.15.0",
+    "eslint-plugin-babel": "5.3.1",
+    "jest": "26.6.3",
+    "jest-cli": "26.6.3",
+    "jest-environment-node-debug": "2.0.0",
+    "prettier": "2.1.2",
+    "regenerator-runtime": "0.13.7",
+    "semantic-release": "^17.2.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bitdiver/model.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bitdiver/model/issues"
+  },
+  "homepage": "https://github.com/bitdiver/model#readme"
 }
