@@ -51,7 +51,7 @@
 		"eslint-config-prettier": "8.3.0",
 		"eslint-plugin-babel": "5.3.1",
 		"jest": "27.0.6",
-		"jest-cli": "27.0.6",
+		"jest-cli": "27.2.5",
 		"jest-environment-node-debug": "2.0.0",
 		"prettier": "2.3.2",
 		"regenerator-runtime": "0.13.9",
