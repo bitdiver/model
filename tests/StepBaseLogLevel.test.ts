@@ -5,24 +5,24 @@ import { getLogAdapterMemory } from '@bitdiver/logadapter'
 const LOG_ADAPTER_LOG_LEVEL = 'error'
 
 const logAdapterMemory = getLogAdapterMemory({
-  logLevel: LOG_ADAPTER_LOG_LEVEL,
+  logLevel: LOG_ADAPTER_LOG_LEVEL
 })
 
-test('Logging: info', () => {
-  const step = getStep()
-  step.logInfo('myInfo')
+test('Logging: info', async () => {
+  const step = await getStep()
+  await step.logInfo('myInfo')
   expect(logAdapterMemory.logs).toEqual({})
 })
 
-test('Logging: warning', () => {
-  const step = getStep()
-  step.logWarning('myError')
+test('Logging: warning', async () => {
+  const step = await getStep()
+  await step.logWarning('myError')
   expect(logAdapterMemory.logs).toEqual({})
 })
 
-test('Logging: error', () => {
-  const step = getStep()
-  step.logError('myError')
+test('Logging: error', async () => {
+  const step = await getStep()
+  await step.logError('myError')
   expect(logAdapterMemory.logs).toEqual({
     myRunId: {
       logs: [],
@@ -38,20 +38,20 @@ test('Logging: error', () => {
                   countCurrent: 3,
                   countAll: 15,
                   data: { message: 'myError' },
-                  logLevel: 'error',
-                },
-              ],
-            },
-          },
-        },
-      },
-    },
+                  logLevel: 'error'
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
   })
 })
 
-test('Logging: fatal', () => {
-  const step = getStep()
-  step.logFatal('myError')
+test('Logging: fatal', async () => {
+  const step = await getStep()
+  await step.logFatal('myError')
   expect(logAdapterMemory.logs).toEqual({
     myRunId: {
       logs: [],
@@ -67,20 +67,20 @@ test('Logging: fatal', () => {
                   countCurrent: 3,
                   countAll: 15,
                   data: { message: 'myError' },
-                  logLevel: 'fatal',
-                },
-              ],
-            },
-          },
-        },
-      },
-    },
+                  logLevel: 'fatal'
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
   })
 })
 
-function getStep() {
-  logAdapterMemory.reset()
-  const step = new StepBase({ logAdapter: logAdapterMemory })
+async function getStep(): Promise<StepBase> {
+  await logAdapterMemory.reset()
+  const step = new StepBase({ logAdapter: logAdapterMemory, name: 'myStep' })
   const envRun = new EnvironmentRun()
   envRun.id = 'myRunId'
   const envTc = new EnvironmentTestcase()
@@ -89,7 +89,6 @@ function getStep() {
   envTc.name = 'myTcName'
   step.environmentRun = envRun
   step.environmentTestcase = envTc
-  step.name = 'myStep'
   step.countCurrent = 3
   step.countAll = 15
   return step
