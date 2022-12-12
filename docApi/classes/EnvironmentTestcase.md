@@ -45,7 +45,7 @@ in the same testcase
 
 #### Defined in
 
-EnvironmentTestcase.ts:35
+[EnvironmentTestcase.ts:35](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentTestcase.ts#L35)
 
 ## Properties
 
@@ -55,7 +55,7 @@ EnvironmentTestcase.ts:35
 
 #### Defined in
 
-EnvironmentTestcase.ts:20
+[EnvironmentTestcase.ts:20](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentTestcase.ts#L20)
 
 ___
 
@@ -65,7 +65,7 @@ ___
 
 #### Defined in
 
-EnvironmentTestcase.ts:33
+[EnvironmentTestcase.ts:33](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentTestcase.ts#L33)
 
 ___
 
@@ -75,7 +75,7 @@ ___
 
 #### Defined in
 
-EnvironmentTestcase.ts:30
+[EnvironmentTestcase.ts:30](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentTestcase.ts#L30)
 
 ___
 
@@ -85,7 +85,7 @@ ___
 
 #### Defined in
 
-EnvironmentTestcase.ts:18
+[EnvironmentTestcase.ts:18](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentTestcase.ts#L18)
 
 ___
 
@@ -95,7 +95,7 @@ ___
 
 #### Defined in
 
-EnvironmentTestcase.ts:12
+[EnvironmentTestcase.ts:12](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentTestcase.ts#L12)
 
 ___
 
@@ -105,7 +105,7 @@ ___
 
 #### Defined in
 
-EnvironmentTestcase.ts:26
+[EnvironmentTestcase.ts:26](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentTestcase.ts#L26)
 
 ___
 
@@ -115,7 +115,7 @@ ___
 
 #### Defined in
 
-EnvironmentTestcase.ts:15
+[EnvironmentTestcase.ts:15](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentTestcase.ts#L15)
 
 ___
 
@@ -125,7 +125,7 @@ ___
 
 #### Defined in
 
-EnvironmentTestcase.ts:23
+[EnvironmentTestcase.ts:23](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentTestcase.ts#L23)
 
 ## Accessors
 
@@ -139,7 +139,7 @@ EnvironmentTestcase.ts:23
 
 #### Defined in
 
-EnvironmentTestcase.ts:54
+[EnvironmentTestcase.ts:54](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentTestcase.ts#L54)
 
 • `set` **status**(`newStatus`): `void`
 
@@ -158,7 +158,7 @@ testcase the status could not be changed any more
 
 #### Defined in
 
-EnvironmentTestcase.ts:48
+[EnvironmentTestcase.ts:48](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentTestcase.ts#L48)
 
 ## Methods
 
@@ -174,4 +174,4 @@ Finishes this testcase
 
 #### Defined in
 
-EnvironmentTestcase.ts:61
+[EnvironmentTestcase.ts:61](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentTestcase.ts#L61)

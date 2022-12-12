@@ -31,7 +31,7 @@
 
 #### Defined in
 
-constants.ts:4
+[constants.ts:4](https://github.com/bitdiver/model/blob/0de7690/src/constants.ts#L4)
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 #### Defined in
 
-constants.ts:5
+[constants.ts:5](https://github.com/bitdiver/model/blob/0de7690/src/constants.ts#L5)
 
 ___
 
@@ -51,7 +51,7 @@ ___
 
 #### Defined in
 
-constants.ts:1
+[constants.ts:1](https://github.com/bitdiver/model/blob/0de7690/src/constants.ts#L1)
 
 ___
 
@@ -61,7 +61,7 @@ ___
 
 #### Defined in
 
-constants.ts:2
+[constants.ts:2](https://github.com/bitdiver/model/blob/0de7690/src/constants.ts#L2)
 
 ___
 
@@ -71,4 +71,4 @@ ___
 
 #### Defined in
 
-constants.ts:3
+[constants.ts:3](https://github.com/bitdiver/model/blob/0de7690/src/constants.ts#L3)

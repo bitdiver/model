@@ -56,7 +56,7 @@ for the step.
 
 #### Defined in
 
-StepBase.ts:72
+[StepBase.ts:72](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L72)
 
 ## Properties
 
@@ -66,7 +66,7 @@ StepBase.ts:72
 
 #### Defined in
 
-StepBase.ts:50
+[StepBase.ts:50](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L50)
 
 ___
 
@@ -76,7 +76,7 @@ ___
 
 #### Defined in
 
-StepBase.ts:47
+[StepBase.ts:47](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L47)
 
 ___
 
@@ -86,7 +86,7 @@ ___
 
 #### Defined in
 
-StepBase.ts:70
+[StepBase.ts:70](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L70)
 
 ___
 
@@ -96,7 +96,7 @@ ___
 
 #### Defined in
 
-StepBase.ts:66
+[StepBase.ts:66](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L66)
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 #### Defined in
 
-StepBase.ts:64
+[StepBase.ts:64](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L64)
 
 ___
 
@@ -118,7 +118,7 @@ The Logadapter used by the step
 
 #### Defined in
 
-StepBase.ts:25
+[StepBase.ts:25](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L25)
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 #### Defined in
 
-StepBase.ts:59
+[StepBase.ts:59](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L59)
 
 ___
 
@@ -138,7 +138,7 @@ ___
 
 #### Defined in
 
-StepBase.ts:34
+[StepBase.ts:34](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L34)
 
 ___
 
@@ -148,7 +148,7 @@ ___
 
 #### Defined in
 
-StepBase.ts:43
+[StepBase.ts:43](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L43)
 
 ___
 
@@ -158,7 +158,7 @@ ___
 
 #### Defined in
 
-StepBase.ts:54
+[StepBase.ts:54](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L54)
 
 ___
 
@@ -168,7 +168,7 @@ ___
 
 #### Defined in
 
-StepBase.ts:31
+[StepBase.ts:31](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L31)
 
 ___
 
@@ -178,7 +178,7 @@ ___
 
 #### Defined in
 
-StepBase.ts:39
+[StepBase.ts:39](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L39)
 
 ___
 
@@ -190,7 +190,7 @@ The type of this step
 
 #### Defined in
 
-StepBase.ts:28
+[StepBase.ts:28](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L28)
 
 ## Methods
 
@@ -215,7 +215,7 @@ If this is a single step the log will be written for each testcase environment
 
 #### Defined in
 
-StepBase.ts:214
+[StepBase.ts:214](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L214)
 
 ___
 
@@ -232,7 +232,7 @@ This method will be called even if the run method has failed
 
 #### Defined in
 
-StepBase.ts:122
+[StepBase.ts:122](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L122)
 
 ___
 
@@ -248,7 +248,7 @@ This method will be called just before the run method
 
 #### Defined in
 
-StepBase.ts:107
+[StepBase.ts:107](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L107)
 
 ___
 
@@ -264,7 +264,7 @@ This method will be called when all the step instances of this step are finished
 
 #### Defined in
 
-StepBase.ts:129
+[StepBase.ts:129](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L129)
 
 ___
 
@@ -287,7 +287,7 @@ Logs a debug message.
 
 #### Defined in
 
-StepBase.ts:140
+[StepBase.ts:140](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L140)
 
 ___
 
@@ -311,7 +311,7 @@ Error normaly means that the testcase gots an error
 
 #### Defined in
 
-StepBase.ts:183
+[StepBase.ts:183](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L183)
 
 ___
 
@@ -335,7 +335,7 @@ Fatal normaly means that the complete test run needs to be stopped
 
 #### Defined in
 
-StepBase.ts:198
+[StepBase.ts:198](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L198)
 
 ___
 
@@ -358,7 +358,7 @@ Logs a info message.
 
 #### Defined in
 
-StepBase.ts:154
+[StepBase.ts:154](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L154)
 
 ___
 
@@ -381,7 +381,7 @@ Logs a warning message.
 
 #### Defined in
 
-StepBase.ts:168
+[StepBase.ts:168](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L168)
 
 ___
 
@@ -397,7 +397,7 @@ This method is doing the work
 
 #### Defined in
 
-StepBase.ts:114
+[StepBase.ts:114](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L114)
 
 ___
 
@@ -413,4 +413,4 @@ First the start method will be called for all the step instances of the step
 
 #### Defined in
 
-StepBase.ts:100
+[StepBase.ts:100](https://github.com/bitdiver/model/blob/0de7690/src/StepBase.ts#L100)
