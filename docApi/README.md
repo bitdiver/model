@@ -1,4 +1,4 @@
-@bitdiver/model / [Exports](docApi/modules.md)
+@bitdiver/model / [Exports](modules.md)
 
 # Model
 

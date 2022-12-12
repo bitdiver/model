@@ -23,7 +23,7 @@ Registers a new step class to the registry.
 ----
 import {SuperStep} from 'myStepProject'
 
-stepRegistry.registerStep('superStepName', SuperStep)
+stepRegistry.registerStep({ stepName: 'superStepName', step: SuperStep })
 ----
 
 
