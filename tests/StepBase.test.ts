@@ -9,9 +9,9 @@ import { getLogAdapterMemory } from '@bitdiver/logadapter'
 
 const logAdapterMemory = getLogAdapterMemory({ logLevel: 'debug' })
 
-test.only('Logging: debug', async () => {
+test('Logging: debug', async () => {
   const step = await getStep()
-  debugger
+
   await step.logDebug('myDebug')
   expect(logAdapterMemory.logs).toEqual({
     myRunId: {
