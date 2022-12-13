@@ -1,6 +1,6 @@
 import { EnvironmentRun } from './EnvironmentRun'
 import { EnvironmentTestcase } from './EnvironmentTestcase'
-import { LogAdapterConsole, LogMessageInterface } from '@bitdiver/logadapter'
+import { LogAdapterInterface, LogMessageInterface } from '@bitdiver/logadapter'
 import { StepBase } from './StepBase'
 
 interface GenerateLogsRequest {
@@ -8,10 +8,10 @@ interface GenerateLogsRequest {
   environmentRun: EnvironmentRun
 
   /** The test case environment */
-  environmentTestcase: EnvironmentTestcase
+  environmentTestcase?: EnvironmentTestcase
 
   /** The log adapter to use */
-  logAdapter: LogAdapterConsole
+  logAdapter: LogAdapterInterface
 
   /** The message to log */
   messageObj: any

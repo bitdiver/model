@@ -2,6 +2,7 @@ export { EnvironmentRun } from './EnvironmentRun'
 export { EnvironmentTestcase } from './EnvironmentTestcase'
 export { StepBase } from './StepBase'
 export { StepRegistry } from './StepRegistry'
+export { generateLogs } from './generateLogs'
 
 export {
   STATUS_OK,
@@ -9,5 +10,6 @@ export {
   STATUS_WARNING,
   STATUS_ERROR,
   STATUS_FATAL,
-  StepType
+  StepType,
+  DIR_BASE_DATA
 } from './constants'

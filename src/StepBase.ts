@@ -6,10 +6,10 @@ import {
   LEVEL_WARNING,
   LEVEL_ERROR,
   LEVEL_FATAL,
-  LogAdapterConsole
+  LogAdapterInterface
 } from '@bitdiver/logadapter'
 
-import { generateLogs } from './logHelper'
+import { generateLogs } from './generateLogs'
 import { StepType } from './constants'
 import { EnvironmentTestcase } from './EnvironmentTestcase'
 import { EnvironmentRun } from './EnvironmentRun'
@@ -22,7 +22,7 @@ import { StepOptions } from './interfaceStepOptions'
  */
 export class StepBase {
   /** The Logadapter used by the step */
-  logAdapter: LogAdapterConsole = getLogAdapterConsole()
+  logAdapter: LogAdapterInterface = getLogAdapterConsole()
 
   /** The type of this step */
   type: StepType = StepType.normal
