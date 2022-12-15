@@ -1,9 +1,4 @@
-import {
-  StepBase,
-  EnvironmentRun,
-  EnvironmentTestcase,
-  StepType
-} from '../src/index'
+import { StepNormal, EnvironmentRun, EnvironmentTestcase } from '../src/index'
 
 import { getLogAdapterMemory } from '@bitdiver/logadapter'
 
@@ -156,40 +151,30 @@ test('Logging: fatal', async () => {
 })
 
 test('Create step needData = false', async () => {
-  const step = new StepBase({ name: 'gugu', needData: false })
+  const step = new StepNormal({ name: 'gugu', needData: false })
   expect(step.needData).toEqual(false)
 })
 test('Create step needData = undefined', async () => {
-  const step = new StepBase({ name: 'gugu' })
+  const step = new StepNormal({ name: 'gugu' })
   expect(step.needData).toEqual(true)
 })
 
 test('Create step runOnError = true', async () => {
-  const step = new StepBase({ name: 'gugu', runOnError: true })
+  const step = new StepNormal({ name: 'gugu', runOnError: true })
   expect(step.runOnError).toEqual(true)
 })
 test('Create step runOnError = undefined', async () => {
-  const step = new StepBase({ name: 'gugu' })
+  const step = new StepNormal({ name: 'gugu' })
   expect(step.runOnError).toEqual(false)
 })
 
 test('Create step type = undefined', async () => {
-  const step = new StepBase({ name: 'gugu' })
-  expect(step.type).toEqual('normal')
-})
-
-test('Create step type = STEP_TYPE_SINGLE', async () => {
-  const step = new StepBase({ name: 'gugu', type: StepType.single })
-  expect(step.type).toEqual('single')
-})
-
-test('Create step type = STEP_TYPE_NORMAL', async () => {
-  const step = new StepBase({ name: 'gugu', type: StepType.normal })
+  const step = new StepNormal({ name: 'gugu' })
   expect(step.type).toEqual('normal')
 })
 
 test('make coverage report lucky', async () => {
-  const step = new StepBase({ name: 'gugu', type: StepType.normal })
+  const step = new StepNormal({ name: 'gugu' })
   await step.start()
   await step.beforeRun()
   await step.run()
@@ -197,9 +182,9 @@ test('make coverage report lucky', async () => {
   await step.end()
 })
 
-async function getStep(): Promise<StepBase> {
+async function getStep(): Promise<StepNormal> {
   await logAdapterMemory.reset()
-  const step = new StepBase({ logAdapter: logAdapterMemory, name: 'myStep' })
+  const step = new StepNormal({ logAdapter: logAdapterMemory, name: 'myStep' })
   const envRun = new EnvironmentRun()
   envRun.id = 'myRunId'
   const envTc = new EnvironmentTestcase()

@@ -78,9 +78,11 @@ test('Logging: fatal', async () => {
   })
 })
 
+class DummyStep extends StepBase {}
+
 async function getStep(): Promise<StepBase> {
   await logAdapterMemory.reset()
-  const step = new StepBase({ logAdapter: logAdapterMemory, name: 'myStep' })
+  const step = new DummyStep({ logAdapter: logAdapterMemory, name: 'myStep' })
   const envRun = new EnvironmentRun()
   envRun.id = 'myRunId'
   const envTc = new EnvironmentTestcase()

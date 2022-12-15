@@ -1,12 +1,8 @@
 import { LogAdapterConsole } from '@bitdiver/logadapter'
-import { StepType } from './constants'
 
 export interface StepOptions {
   /** The name of this step */
   name: string
-
-  /** The type of this step */
-  type?: StepType
 
   /** The Logadapter used by the step */
   logAdapter?: LogAdapterConsole

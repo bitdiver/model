@@ -1,6 +1,8 @@
 export { EnvironmentRun } from './EnvironmentRun'
 export { EnvironmentTestcase } from './EnvironmentTestcase'
 export { StepBase } from './StepBase'
+export { StepNormal } from './StepNormal'
+export { StepSingle } from './StepSingle'
 export { StepRegistry } from './StepRegistry'
 export { generateLogs } from './generateLogs'
 

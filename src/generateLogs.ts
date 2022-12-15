@@ -1,14 +1,16 @@
 import { EnvironmentRun } from './EnvironmentRun'
 import { EnvironmentTestcase } from './EnvironmentTestcase'
 import { LogAdapterInterface, LogMessageInterface } from '@bitdiver/logadapter'
+import { StepNormal } from './StepNormal'
+import { StepSingle } from './StepSingle'
 import { StepBase } from './StepBase'
 
 interface GenerateLogsRequest {
   /** The run environment */
   environmentRun: EnvironmentRun
 
-  /** The test case environment */
-  environmentTestcase?: EnvironmentTestcase
+  /** The test case environment. Or for SingleSteps an array of test case environments */
+  environmentTestcase?: EnvironmentTestcase | EnvironmentTestcase[]
 
   /** The log adapter to use */
   logAdapter: LogAdapterInterface
@@ -20,7 +22,7 @@ interface GenerateLogsRequest {
   logLevelString: string
 
   /** If this is a step log, the step instance object */
-  step?: StepBase
+  step?: StepNormal | StepSingle | StepBase
 }
 
 /**

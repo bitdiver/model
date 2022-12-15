@@ -1,9 +1,9 @@
-import { StepRegistry, StepBase } from '../src/index'
+import { StepRegistry, StepNormal, StepBase } from '../src/index'
 import { StepOptions } from '../src/interfaceStepOptions'
 
 test('Test that the step could be registered', () => {
   const registry = new StepRegistry()
-  registry.registerStep({ stepName: 'gumStep', step: StepBase })
+  registry.registerStep({ stepName: 'gumStep', step: StepNormal })
 
   const step = registry.getStep('gumStep')
 
@@ -12,7 +12,7 @@ test('Test that the step could be registered', () => {
 
 test('Register to steps with the same name:Schould overwrite the first step', () => {
   const registry = new StepRegistry()
-  registry.registerStep({ stepName: 'gumStep', step: StepBase })
+  registry.registerStep({ stepName: 'gumStep', step: StepNormal })
 
   const step = registry.getStep('gumStep')
   expect(step.name).toEqual('gumStep')
@@ -26,7 +26,7 @@ test('Register to steps with the same name:Schould overwrite the first step', ()
 
 test('Register try to get a step which does not exists', () => {
   const registry = new StepRegistry()
-  registry.registerStep({ stepName: 'gumStep', step: StepBase })
+  registry.registerStep({ stepName: 'gumStep', step: StepNormal })
 
   expect(() => {
     // eslint-disable-next-line no-new

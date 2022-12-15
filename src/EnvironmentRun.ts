@@ -16,7 +16,7 @@ export class EnvironmentRun {
   _status: number = STATUS_OK
 
   // The description of the suite
-  description: string
+  description?: string
 
   // The start time in milliseconds
   startTime: number = Date.now()
