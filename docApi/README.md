@@ -195,7 +195,72 @@ Creates an instance for the class registered under the given name.
 
     const mySuperStep = stepRegistry.getStep('superStepName')
 
-Unresolved directive in index.adoc - include::environmentRun.adoc\[\]
+## EnvironmemntRun
 
-Unresolved directive in index.adoc -
-include::environmentTestcase.adoc\[\]
+The run environment is the context which lives for the whole execution
+of the run. This context could be used to store configurations or other
+data which needs to be provided to each test case. This context could be
+read and written by each step in each test case.
+
+The data is stored in a map.
+
+**EnvironmemntRun properties**
+
+    {
+      id: 'uuid'             
+      name: 'suite name'     
+      status: STATUS_OK      
+      description: 'a desc'  
+      startTime: Date.now()  
+      this.map = new Map()   
+    }
+
+-   The id is a uuid. It will be generated when the environment is
+    created.
+
+-   The name of the suite.
+
+-   The overall status of this run. If one test case has an error the
+    complete run get the status error.
+
+-   Any description for this run.
+
+-   The timestamp the run was started.
+
+-   This map is used to store the context information.
+
+## EnvironmemntTestcase
+
+The test case environment is the context which lives for the whole
+execution of the test case. For each test case an own environment will
+be created. This context is the right place to transport data from one
+step to a following step in the test case.
+
+The data is stored in a map.
+
+**EnvironmemntRun properties**
+
+    {
+      id: 'uuid'             
+      name: 'suite name'     
+      status: STATUS_OK      
+      description: 'a desc'  
+      running: true          
+      this.map = new Map()   
+    }
+
+-   The id is a uuid. It will be generated when the environment is
+    created.
+
+-   The name of the suite.
+
+-   The overall status of this run. If one test case has an error the
+    complete run get the status error.
+
+-   Any description for this run.
+
+-   if a test case has failed the running status will be switched to
+    false. So there will be no execution of further steps for this test
+    case.
+
+-   This map is used to store the context information.

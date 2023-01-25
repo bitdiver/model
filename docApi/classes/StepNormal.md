@@ -1,6 +1,6 @@
-[@bitdiver/model](../README.md) / [Exports](../modules.md) / StepBase
+[@bitdiver/model](../README.md) / [Exports](../modules.md) / StepNormal
 
-# Class: StepBase
+# Class: StepNormal
 
 The base class for a step. Later on there will be one instace of this class per step and per testcase.
 If the step is of the type 'STEP_TYPE_SINGLE' or 'STEP_TYPE_SERVER_ONLY' Then there would be only one instance
@@ -8,60 +8,62 @@ for the step.
 
 ## Hierarchy
 
-- **`StepBase`**
+- [`StepBase`](StepBase.md)
 
-  ↳ [`StepNormal`](StepNormal.md)
-
-  ↳ [`StepSingle`](StepSingle.md)
+  ↳ **`StepNormal`**
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](StepBase.md#constructor)
+- [constructor](StepNormal.md#constructor)
 
 ### Properties
 
-- [countAll](StepBase.md#countall)
-- [countCurrent](StepBase.md#countcurrent)
-- [data](StepBase.md#data)
-- [description](StepBase.md#description)
-- [environmentRun](StepBase.md#environmentrun)
-- [environmentTestcase](StepBase.md#environmenttestcase)
-- [logAdapter](StepBase.md#logadapter)
-- [maxParallelSteps](StepBase.md#maxparallelsteps)
-- [name](StepBase.md#name)
-- [needData](StepBase.md#needdata)
-- [runOnError](StepBase.md#runonerror)
-- [stepInstanceId](StepBase.md#stepinstanceid)
-- [testMode](StepBase.md#testmode)
-- [type](StepBase.md#type)
+- [countAll](StepNormal.md#countall)
+- [countCurrent](StepNormal.md#countcurrent)
+- [data](StepNormal.md#data)
+- [description](StepNormal.md#description)
+- [environmentRun](StepNormal.md#environmentrun)
+- [environmentTestcase](StepNormal.md#environmenttestcase)
+- [logAdapter](StepNormal.md#logadapter)
+- [maxParallelSteps](StepNormal.md#maxparallelsteps)
+- [name](StepNormal.md#name)
+- [needData](StepNormal.md#needdata)
+- [runOnError](StepNormal.md#runonerror)
+- [stepInstanceId](StepNormal.md#stepinstanceid)
+- [testMode](StepNormal.md#testmode)
+- [type](StepNormal.md#type)
 
 ### Methods
 
-- [\_log](StepBase.md#_log)
-- [afterRun](StepBase.md#afterrun)
-- [beforeRun](StepBase.md#beforerun)
-- [end](StepBase.md#end)
-- [logDebug](StepBase.md#logdebug)
-- [logError](StepBase.md#logerror)
-- [logFatal](StepBase.md#logfatal)
-- [logInfo](StepBase.md#loginfo)
-- [logWarning](StepBase.md#logwarning)
-- [run](StepBase.md#run)
-- [start](StepBase.md#start)
+- [\_log](StepNormal.md#_log)
+- [afterRun](StepNormal.md#afterrun)
+- [beforeRun](StepNormal.md#beforerun)
+- [end](StepNormal.md#end)
+- [logDebug](StepNormal.md#logdebug)
+- [logError](StepNormal.md#logerror)
+- [logFatal](StepNormal.md#logfatal)
+- [logInfo](StepNormal.md#loginfo)
+- [logWarning](StepNormal.md#logwarning)
+- [run](StepNormal.md#run)
+- [start](StepNormal.md#start)
 
 ## Constructors
 
 ### constructor
 
-• **new StepBase**(`opts`)
+• **new StepNormal**(`opts`)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
 | `opts` | `StepOptions` |
+
+#### Inherited from
+
+[StepBase](StepBase.md).[constructor](StepBase.md#constructor)
 
 #### Defined in
 
@@ -74,6 +76,10 @@ for the step.
 • **countAll**: `number` = `0`
 
 This is set by the runner. How many steps to be excuted in this run
+
+#### Inherited from
+
+[StepBase](StepBase.md).[countAll](StepBase.md#countall)
 
 #### Defined in
 
@@ -88,6 +94,10 @@ ___
 This is set by the runner. The number of this stepin the list of all the steps
 Start with '1'
 
+#### Inherited from
+
+[StepBase](StepBase.md).[countCurrent](StepBase.md#countcurrent)
+
 #### Defined in
 
 [StepBase.ts:55](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L55)
@@ -98,11 +108,15 @@ ___
 
 • `Optional` **data**: `any`
 
-The data for this step
+The array contains the data for this step instance
+
+#### Overrides
+
+[StepBase](StepBase.md).[data](StepBase.md#data)
 
 #### Defined in
 
-[StepBase.ts:78](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L78)
+[StepNormal.ts:14](https://github.com/bitdiver/model/blob/e208e5b/src/StepNormal.ts#L14)
 
 ___
 
@@ -111,6 +125,10 @@ ___
 • `Optional` **description**: `string`
 
 An optional description for this step
+
+#### Inherited from
+
+[StepBase](StepBase.md).[description](StepBase.md#description)
 
 #### Defined in
 
@@ -122,6 +140,10 @@ ___
 
 • `Optional` **environmentRun**: [`EnvironmentRun`](EnvironmentRun.md)
 
+#### Inherited from
+
+[StepBase](StepBase.md).[environmentRun](StepBase.md#environmentrun)
+
 #### Defined in
 
 [StepBase.ts:73](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L73)
@@ -130,11 +152,17 @@ ___
 
 ### environmentTestcase
 
-• `Optional` **environmentTestcase**: [`EnvironmentTestcase`](EnvironmentTestcase.md) \| [`EnvironmentTestcase`](EnvironmentTestcase.md)[]
+• `Optional` **environmentTestcase**: [`EnvironmentTestcase`](EnvironmentTestcase.md)
+
+The test case environment for the current test case
+
+#### Overrides
+
+[StepBase](StepBase.md).[environmentTestcase](StepBase.md#environmenttestcase)
 
 #### Defined in
 
-[StepBase.ts:75](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L75)
+[StepNormal.ts:9](https://github.com/bitdiver/model/blob/e208e5b/src/StepNormal.ts#L9)
 
 ___
 
@@ -143,6 +171,10 @@ ___
 • **logAdapter**: `LogAdapterInterface`
 
 The Logadapter used by the step
+
+#### Inherited from
+
+[StepBase](StepBase.md).[logAdapter](StepBase.md#logadapter)
 
 #### Defined in
 
@@ -158,6 +190,10 @@ Allows to define how many parallel exection are possible on a per step basis.
 This value is normaly defined in the runner, but when given here it will overwrite
 the runner if this value is less
 
+#### Inherited from
+
+[StepBase](StepBase.md).[maxParallelSteps](StepBase.md#maxparallelsteps)
+
 #### Defined in
 
 [StepBase.ts:71](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L71)
@@ -169,6 +205,10 @@ ___
 • **name**: `string`
 
 The name of this step
+
+#### Inherited from
+
+[StepBase](StepBase.md).[name](StepBase.md#name)
 
 #### Defined in
 
@@ -183,6 +223,10 @@ ___
 Normaly a step will only be executed if there is data defined for the testcase.
 but some steps do not need any data. Then this must be set to false.
 
+#### Inherited from
+
+[StepBase](StepBase.md).[needData](StepBase.md#needdata)
+
 #### Defined in
 
 [StepBase.ts:50](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L50)
@@ -196,6 +240,10 @@ ___
 If this is set to true, the step will executed even if the testcase is already failed
 This is important for cleanup steps, for Example.
 
+#### Inherited from
+
+[StepBase](StepBase.md).[runOnError](StepBase.md#runonerror)
+
 #### Defined in
 
 [StepBase.ts:64](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L64)
@@ -207,6 +255,10 @@ ___
 • **stepInstanceId**: `string`
 
 creates a unique step instance id
+
+#### Inherited from
+
+[StepBase](StepBase.md).[stepInstanceId](StepBase.md#stepinstanceid)
 
 #### Defined in
 
@@ -222,6 +274,10 @@ The idea of the testmode is to test the run of a step without executing it compl
 So the suite could be tested. This is important for long running tests
 The mode is set by the runner
 
+#### Inherited from
+
+[StepBase](StepBase.md).[testMode](StepBase.md#testmode)
+
 #### Defined in
 
 [StepBase.ts:44](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L44)
@@ -234,9 +290,13 @@ ___
 
 The type of this step
 
+#### Overrides
+
+[StepBase](StepBase.md).[type](StepBase.md#type)
+
 #### Defined in
 
-[StepBase.ts:28](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L28)
+[StepNormal.ts:17](https://github.com/bitdiver/model/blob/e208e5b/src/StepNormal.ts#L17)
 
 ## Methods
 
@@ -259,6 +319,10 @@ If this is a single step the log will be written for each testcase environment
 
 `Promise`<`void`\>
 
+#### Inherited from
+
+[StepBase](StepBase.md).[_log](StepBase.md#_log)
+
 #### Defined in
 
 [StepBase.ts:213](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L213)
@@ -276,6 +340,10 @@ This method will be called even if the run method has failed
 
 `Promise`<`void`\>
 
+#### Inherited from
+
+[StepBase](StepBase.md).[afterRun](StepBase.md#afterrun)
+
 #### Defined in
 
 [StepBase.ts:126](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L126)
@@ -292,6 +360,10 @@ This method will be called just before the run method
 
 `Promise`<`void`\>
 
+#### Inherited from
+
+[StepBase](StepBase.md).[beforeRun](StepBase.md#beforerun)
+
 #### Defined in
 
 [StepBase.ts:111](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L111)
@@ -307,6 +379,10 @@ This method will be called when all the step instances of this step are finished
 #### Returns
 
 `Promise`<`void`\>
+
+#### Inherited from
+
+[StepBase](StepBase.md).[end](StepBase.md#end)
 
 #### Defined in
 
@@ -330,6 +406,10 @@ Logs a debug message.
 #### Returns
 
 `Promise`<`void`\>
+
+#### Inherited from
+
+[StepBase](StepBase.md).[logDebug](StepBase.md#logdebug)
 
 #### Defined in
 
@@ -355,6 +435,10 @@ Error normaly means that the testcase gots an error
 
 `Promise`<`void`\>
 
+#### Inherited from
+
+[StepBase](StepBase.md).[logError](StepBase.md#logerror)
+
 #### Defined in
 
 [StepBase.ts:184](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L184)
@@ -379,6 +463,10 @@ Fatal normaly means that the complete test run needs to be stopped
 
 `Promise`<`void`\>
 
+#### Inherited from
+
+[StepBase](StepBase.md).[logFatal](StepBase.md#logfatal)
+
 #### Defined in
 
 [StepBase.ts:198](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L198)
@@ -401,6 +489,10 @@ Logs a info message.
 #### Returns
 
 `Promise`<`void`\>
+
+#### Inherited from
+
+[StepBase](StepBase.md).[logInfo](StepBase.md#loginfo)
 
 #### Defined in
 
@@ -425,6 +517,10 @@ Logs a warning message.
 
 `Promise`<`void`\>
 
+#### Inherited from
+
+[StepBase](StepBase.md).[logWarning](StepBase.md#logwarning)
+
 #### Defined in
 
 [StepBase.ts:170](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L170)
@@ -441,6 +537,10 @@ This method is doing the work
 
 `Promise`<`void`\>
 
+#### Inherited from
+
+[StepBase](StepBase.md).[run](StepBase.md#run)
+
 #### Defined in
 
 [StepBase.ts:118](https://github.com/bitdiver/model/blob/e208e5b/src/StepBase.ts#L118)
@@ -456,6 +556,10 @@ First the start method will be called for all the step instances of the step
 #### Returns
 
 `Promise`<`void`\>
+
+#### Inherited from
+
+[StepBase](StepBase.md).[start](StepBase.md#start)
 
 #### Defined in
 

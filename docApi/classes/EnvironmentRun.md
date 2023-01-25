@@ -37,7 +37,7 @@ The run enviroment will be created when a new run starts
 
 #### Defined in
 
-[EnvironmentRun.ts:27](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentRun.ts#L27)
+[EnvironmentRun.ts:27](https://github.com/bitdiver/model/blob/e208e5b/src/EnvironmentRun.ts#L27)
 
 ## Properties
 
@@ -47,17 +47,17 @@ The run enviroment will be created when a new run starts
 
 #### Defined in
 
-[EnvironmentRun.ts:16](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentRun.ts#L16)
+[EnvironmentRun.ts:16](https://github.com/bitdiver/model/blob/e208e5b/src/EnvironmentRun.ts#L16)
 
 ___
 
 ### description
 
-• **description**: `string`
+• `Optional` **description**: `string`
 
 #### Defined in
 
-[EnvironmentRun.ts:19](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentRun.ts#L19)
+[EnvironmentRun.ts:19](https://github.com/bitdiver/model/blob/e208e5b/src/EnvironmentRun.ts#L19)
 
 ___
 
@@ -67,7 +67,7 @@ ___
 
 #### Defined in
 
-[EnvironmentRun.ts:10](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentRun.ts#L10)
+[EnvironmentRun.ts:10](https://github.com/bitdiver/model/blob/e208e5b/src/EnvironmentRun.ts#L10)
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 #### Defined in
 
-[EnvironmentRun.ts:25](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentRun.ts#L25)
+[EnvironmentRun.ts:25](https://github.com/bitdiver/model/blob/e208e5b/src/EnvironmentRun.ts#L25)
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 #### Defined in
 
-[EnvironmentRun.ts:13](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentRun.ts#L13)
+[EnvironmentRun.ts:13](https://github.com/bitdiver/model/blob/e208e5b/src/EnvironmentRun.ts#L13)
 
 ___
 
@@ -97,7 +97,7 @@ ___
 
 #### Defined in
 
-[EnvironmentRun.ts:22](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentRun.ts#L22)
+[EnvironmentRun.ts:22](https://github.com/bitdiver/model/blob/e208e5b/src/EnvironmentRun.ts#L22)
 
 ## Accessors
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[EnvironmentRun.ts:46](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentRun.ts#L46)
+[EnvironmentRun.ts:46](https://github.com/bitdiver/model/blob/e208e5b/src/EnvironmentRun.ts#L46)
 
 • `set` **status**(`newStatus`): `void`
 
@@ -130,4 +130,4 @@ testcase the status could not be changed any more
 
 #### Defined in
 
-[EnvironmentRun.ts:40](https://github.com/bitdiver/model/blob/0de7690/src/EnvironmentRun.ts#L40)
+[EnvironmentRun.ts:40](https://github.com/bitdiver/model/blob/e208e5b/src/EnvironmentRun.ts#L40)

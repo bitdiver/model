@@ -17,7 +17,7 @@
 
 #### Defined in
 
-[constants.ts:8](https://github.com/bitdiver/model/blob/0de7690/src/constants.ts#L8)
+[constants.ts:8](https://github.com/bitdiver/model/blob/e208e5b/src/constants.ts#L8)
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-[constants.ts:9](https://github.com/bitdiver/model/blob/0de7690/src/constants.ts#L9)
+[constants.ts:9](https://github.com/bitdiver/model/blob/e208e5b/src/constants.ts#L9)

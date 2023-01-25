@@ -35,7 +35,7 @@ The map storing the step classes by name
 
 #### Defined in
 
-[StepRegistry.ts:18](https://github.com/bitdiver/model/blob/0de7690/src/StepRegistry.ts#L18)
+[StepRegistry.ts:18](https://github.com/bitdiver/model/blob/e208e5b/src/StepRegistry.ts#L18)
 
 ## Methods
 
@@ -59,7 +59,7 @@ step - The instance of the step class
 
 #### Defined in
 
-[StepRegistry.ts:44](https://github.com/bitdiver/model/blob/0de7690/src/StepRegistry.ts#L44)
+[StepRegistry.ts:44](https://github.com/bitdiver/model/blob/e208e5b/src/StepRegistry.ts#L44)
 
 ___
 
@@ -81,4 +81,4 @@ Register a class for a step by a given name
 
 #### Defined in
 
-[StepRegistry.ts:25](https://github.com/bitdiver/model/blob/0de7690/src/StepRegistry.ts#L25)
+[StepRegistry.ts:25](https://github.com/bitdiver/model/blob/e208e5b/src/StepRegistry.ts#L25)
