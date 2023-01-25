@@ -136,70 +136,70 @@ export abstract class StepBase {
 
   /**
    * Logs a debug message.
-   * @param options - The message to log or the properties
+   * @param messageObj - The message to log or the properties
    * @param environmentTestcase - The testcase environment. If given the log
    * will only be written for this testcase. If not the log will be written for all the
    * testcases
    */
   async logDebug(
-    options: any,
+    messageObj: any,
     environmentTestcase?: EnvironmentTestcase
   ): Promise<void> {
-    await this._log(options, LEVEL_DEBUG, environmentTestcase)
+    await this._log(messageObj, LEVEL_DEBUG, environmentTestcase)
   }
 
   /**
    * Logs a info message.
-   * @param options - The message to log or the properties
+   * @param messageObj - The message to log or the properties
    * @param environmentTestcase - The testcase environment. If given the log
    * will only be written for this testcase. If not the log will be written for all the
    */
   async logInfo(
-    options: any,
+    messageObj: any,
     environmentTestcase?: EnvironmentTestcase
   ): Promise<void> {
-    await this._log(options, LEVEL_INFO, environmentTestcase)
+    await this._log(messageObj, LEVEL_INFO, environmentTestcase)
   }
 
   /**
    * Logs a warning message.
-   * @param options - The message to log or the properties
+   * @param messageObj - The message to log or the properties
    * @param environmentTestcase - The testcase environment. If given the log
    * will only be written for this testcase. If not the log will be written for all the
    */
   async logWarning(
-    options: any,
+    messageObj: any,
     environmentTestcase?: EnvironmentTestcase
   ): Promise<void> {
-    await this._log(options, LEVEL_WARNING, environmentTestcase)
+    await this._log(messageObj, LEVEL_WARNING, environmentTestcase)
   }
 
   /**
    * Logs a error message.
    * Error normaly means that the testcase gots an error
-   * @param options - The message to log or the properties
+   * @param messageObj - The message to log or the properties
    * @param environmentTestcase - The testcase environment. If given the log
    * will only be written for this testcase. If not the log will be written for all the
    */
   async logError(
-    options: any,
+    messageObj: any,
     environmentTestcase?: EnvironmentTestcase
   ): Promise<void> {
-    await this._log(options, LEVEL_ERROR, environmentTestcase)
+    await this._log(messageObj, LEVEL_ERROR, environmentTestcase)
   }
 
   /**
    * Logs a fatal message.
    * Fatal normaly means that the complete test run needs to be stopped
-   * @param options - The message to log or the properties
+   * @param messageObj - The message to log or the properties
    * @param environmentTestcase - The testcase environment. If given the log
    * will only be written for this testcase. If not the log will be written for all the
    */
   async logFatal(
-    options: any,
+    messageObj: any,
     environmentTestcase?: EnvironmentTestcase
   ): Promise<void> {
-    await this._log(options, LEVEL_FATAL, environmentTestcase)
+    await this._log(messageObj, LEVEL_FATAL, environmentTestcase)
   }
 
   /**
