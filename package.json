@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@types/uuid": "^9.0.0",
-    "@xhubio/build-base": "1.0.102"
+    "@xhubio/build-base": "1.0.103"
   },
   "keywords": [
     "build",
