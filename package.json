@@ -42,12 +42,12 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "@bitdiver/logadapter": "2.0.3",
+    "@bitdiver/logadapter": "2.0.6",
     "uuid": "8.3.2"
   },
   "devDependencies": {
     "@types/uuid": "^9.0.0",
-    "@xhubio/build-base": "1.0.55"
+    "@xhubio/build-base": "1.0.146"
   },
   "keywords": [
     "build",

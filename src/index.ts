@@ -6,6 +6,7 @@ export { StepSingle } from './StepSingle'
 export { StepRegistry } from './StepRegistry'
 export { generateLogs } from './generateLogs'
 export { StepOptions } from './interfaceStepOptions'
+export { StepLoggerInterface } from './interfaceStepLogger'
 
 export {
   STATUS_OK,
