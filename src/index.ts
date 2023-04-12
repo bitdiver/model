@@ -5,6 +5,7 @@ export { StepNormal } from './StepNormal'
 export { StepSingle } from './StepSingle'
 export { StepRegistry } from './StepRegistry'
 export { generateLogs } from './generateLogs'
+export { StepOptions } from './interfaceStepOptions'
 
 export {
   STATUS_OK,
