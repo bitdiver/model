@@ -43,7 +43,7 @@
   "license": "MIT",
   "dependencies": {
     "@bitdiver/logadapter": "2.0.16",
-    "uuid": "8.3.2"
+    "uuid": "11.1.0"
   },
   "devDependencies": {
     "@types/uuid": "^9.0.0",
